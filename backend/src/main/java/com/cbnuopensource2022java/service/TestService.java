@@ -6,6 +6,7 @@ import com.cbnuopensource2022java.repository.LocationRepository;
 
 import lombok.AllArgsConstructor;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,12 +18,8 @@ public class TestService {
         return locationRepository.findAll();
     }
 
-    public String getLocation(int Id) {
-        return locationRepository.findById(Id).toString();
-    }
-
-    public List<Location> getLocationById(int id) {
-        return null;
+    public Optional<Location> getLocationById(int id) {
+        return locationRepository.findById(id);
     }
 
 }

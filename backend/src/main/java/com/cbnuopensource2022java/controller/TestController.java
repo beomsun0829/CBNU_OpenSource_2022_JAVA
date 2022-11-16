@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cbnuopensource2022java.entity.Location;
 import com.cbnuopensource2022java.service.TestService;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -25,8 +26,8 @@ public class TestController {
         return testService.getLocations();
     }
 
-    @GetMapping("api/test/{Id}")
-    public List<Location> getLocationById(@PathVariable("Id") int Id) {
-        return testService.getLocationById(Id);
+    @GetMapping("api/test/{id}")
+    public Optional<Location> getLocationById(@PathVariable("id") int id) {
+        return testService.getLocationById(id);
     }
 }
