@@ -27,6 +27,8 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+task stage(dependsOn: ['clean', 'installDist'])
+
 bootJar {
     archiveClassifier.set('boot')
 }
