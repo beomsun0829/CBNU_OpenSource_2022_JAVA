@@ -17,12 +17,12 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String tycode;
-    private String address;
-    private int statediv;
-    private String lat;
-    private String lng;
+    private String name; // faclNm
+    private String tycode; // faclTyCd
+    private String address; // lcMnad
+    private int statediv; // salStaDivCd
+    private String lat; // faclLat
+    private String lng; // faclLng
 }
 
 /*
