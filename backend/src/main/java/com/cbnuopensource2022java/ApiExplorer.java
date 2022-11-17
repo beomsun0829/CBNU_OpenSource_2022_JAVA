@@ -1,12 +1,14 @@
 package com.cbnuopensource2022java;
 
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ApiExplorer {
@@ -31,11 +33,15 @@ public class ApiExplorer {
 
         BufferedReader rd;
 
-        if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        } else {
-            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-        }
+        rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+        /*
+         * if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+         * rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+         * } else {
+         * rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+         * }
+         */
 
         StringBuilder sb = new StringBuilder();
         String line;
@@ -49,8 +55,8 @@ public class ApiExplorer {
         System.out.println(sb.toString());
 
         // save sb to file
-        File file = new File("./Result.txt");
-        FileWriter fw = new FileWriter(file);
+        File file = new File("./backend/src/main/java/com/cbnuopensource2022java/data/Data.txt");
+        OutputStreamWriter fw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
         fw.write(sb.toString());
         fw.close();
 
