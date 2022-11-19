@@ -6,15 +6,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cbnuopensource2022java.entity.Location;
-import com.cbnuopensource2022java.service.TestService;
+import com.cbnuopensource2022java.service.LocationService;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-public class TestController {
+public class Controller {
 
-    private final TestService testService;
+    private final LocationService testService;
 
     @GetMapping("/test")
     public String test() {
@@ -22,12 +24,17 @@ public class TestController {
     }
 
     @GetMapping("api/test")
-    public List<Location> getLocations() {
-        return testService.getLocations();
+    public List<Location> getLocationListInDB() throws IOException {
+        return testService.getLocationListInDB();
     }
 
     @GetMapping("api/test/{id}")
     public Optional<Location> getLocationById(@PathVariable("id") int id) {
         return testService.getLocationById(id);
+    }
+
+    @GetMapping("api/location")
+    public String getLocations() throws IOException {
+        return testService.getLocations();
     }
 }

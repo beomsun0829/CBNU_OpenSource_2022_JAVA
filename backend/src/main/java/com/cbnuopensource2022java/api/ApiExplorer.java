@@ -1,48 +1,39 @@
-package com.cbnuopensource2022java;
+package com.cbnuopensource2022java.api;
 
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ApiExplorer {
-    public static void main(String[] args) throws IOException {
-        String serviceKey = "3OKTaXNqEaQc5eoKYPtmEO0rjIOpOeLVL3slK8F0azOxSsLyVrdT7jGyBNArNLcqyaZxnrK7fTy6XCQM%2FjSbbA%3D%3D";
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 
-        StringBuilder urlBuilder = new StringBuilder(
-                "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getFacInfoOpenApiJpEvalInfoList");
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + serviceKey); /* Service Key */
-        urlBuilder.append("&" + URLEncoder.encode("wfcltId", "UTF-8") + "="
-                + URLEncoder.encode("0000045950", "UTF-8")); /* 데이터 상세 정보 조회를 위한 키값(장애인 편의시설 목록 조회의 시설ID) */
+public class ApiExplorer {
+    static String ServiceKey = "3OKTaXNqEaQc5eoKYPtmEO0rjIOpOeLVL3slK8F0azOxSsLyVrdT7jGyBNArNLcqyaZxnrK7fTy6XCQM%2FjSbbA%3D%3D";
+    static String MainURL_FaclList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getDisConvFaclList";
+    static String MainURL_ConvList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getFacInfoOpenApiJpEvalInfoList";
+
+    public static String main(String[] args, String U) throws IOException {
+
+        StringBuilder urlBuilder = new StringBuilder(U);
 
         URL url = new URL(urlBuilder.toString());
         url = getFinalURL(url); // 302 found redirection
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setInstanceFollowRedirects(true);
-
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
         System.out.println("Response code: " + conn.getResponseCode());
 
         BufferedReader rd;
-
         rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-        /*
-         * if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-         * rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-         * } else {
-         * rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-         * }
-         */
-
         StringBuilder sb = new StringBuilder();
         String line;
 
@@ -52,14 +43,25 @@ public class ApiExplorer {
 
         rd.close();
         conn.disconnect();
-        System.out.println(sb.toString());
+
+        JSONObject JSONobj = XML.toJSONObject(sb.toString());
+
+        return JSONobj.toString();
 
         // save sb to file
-        File file = new File("./backend/src/main/java/com/cbnuopensource2022java/data/Data.txt");
-        OutputStreamWriter fw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-        fw.write(sb.toString());
-        fw.close();
+        // saveToFile(sb.toString(),
+        // "./backend/src/main/java/com/cbnuopensource2022java/data/Data.txt");
+    }
 
+    public static String getLocations() throws IOException {
+        String U = MainURL_FaclList;
+        U += "?serviceKey=" + ServiceKey;
+        return main(null, U);
+    }
+
+    public static String xmlToJson(String xml) throws JSONException {
+        JSONObject JsonObj = XML.toJSONObject(xml);
+        return JsonObj.toString(4);
     }
 
     public static URL getFinalURL(URL url) {
@@ -87,4 +89,19 @@ public class ApiExplorer {
         }
         return url;
     }
+
+    public static void saveToFile(String data, String path) throws IOException {
+        File file = new File(path);
+        OutputStreamWriter fw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+        fw.write(data);
+        fw.close();
+    }
 }
+
+/*
+ * if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+ * rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+ * } else {
+ * rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+ * }
+ */
