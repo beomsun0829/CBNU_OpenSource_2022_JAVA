@@ -93,71 +93,103 @@
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
                 android:gravity="center"
-                android:text="충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2"
+                android:text="충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2"
                 android:textColor="#000000"
                 android:textSize="24dp" />
 
+
+<!--            하단버튼 2개-->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="9">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                </LinearLayout>
 
                 <!-- 지도 버튼 -->
                 <Button
                     android:id="@+id/map_button"
-                    android:layout_width="160dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="68dp"
                     android:layout_gravity="right"
-                    android:layout_marginLeft="15dp"
+                    android:layout_weight="3"
                     android:background="@drawable/button_round"
                     android:text="지도"
                     android:textSize="35dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                </LinearLayout>
+
                 <!-- 시설물 버튼 -->
                 <Button
-                    android:id="@+id/list_button"
-                    android:layout_width="160dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/facilities_button"
+                    android:layout_width="150dp"
+                    android:layout_height="68dp"
                     android:layout_gravity="right"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_weight="3"
                     android:background="@drawable/button_round"
                     android:text="시설물"
                     android:textSize="35dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                </LinearLayout>
+
+
             </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
-    <!-- 하단 바 -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-29dp">
-        <!-- 홈 버튼 -->
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="40dp"
-            android:src="@drawable/ic_baseline_home_24" />
-        <!-- 즐겨 찾기 -->
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="40dp"
-            android:src="@drawable/ic_baseline_bookmark_24" />
-        <!-- 검색 버튼 -->
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="40dp"
-            android:src="@drawable/ic_baseline_search_24" />
-    </LinearLayout>
+<!--    &lt;!&ndash;하단 바&ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        >-->
+<!--        &lt;!&ndash; 홈 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/home"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_home_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"-->
+<!--            />-->
+
+
+<!--        &lt;!&ndash; 즐겨찾기 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/bookmark"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_bookmark_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"      />-->
+
+
+<!--        &lt;!&ndash; 검색 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/search"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_search_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"      />-->
+<!--    </LinearLayout>-->
 </LinearLayout>

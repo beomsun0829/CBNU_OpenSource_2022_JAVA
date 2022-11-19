@@ -27,18 +27,17 @@ import java.util.Locale;
 
 public class info_activity extends AppCompatActivity {
 
-    private Button info;
-    private Button info2;
+
+    private Button map_button;
+    private Button facilities_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        info2 = findViewById(R.id.map_button);
-
-
-        info2.setOnClickListener(new View.OnClickListener() {
+        map_button= findViewById(R.id.map_button);
+        map_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent_map = new Intent(info_activity.this,map_activity.class);
@@ -46,9 +45,17 @@ public class info_activity extends AppCompatActivity {
             }
         });
 
+
+        facilities_button= findViewById(R.id.facilities_button);
+        facilities_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_map = new Intent(info_activity.this,facilities_activity.class);
+                startActivity(intent_map);
+            }
+        });
+
+
     }
-
-
-
 
 }

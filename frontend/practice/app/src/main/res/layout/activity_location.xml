@@ -15,6 +15,7 @@
         android:theme="?attr/actionBarTheme">
         <!-- 뒤로가기 버튼 -->
         <ImageView
+            android:id="@+id/backbutton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
@@ -24,7 +25,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="위 치"
+            android:text="위치"
             android:textSize="30dp"
             android:textColor="#000000"
             android:layout_gravity="center"
@@ -38,7 +39,7 @@
         android:layout_centerInParent="true"
         android:background="#BBBBBB"/>
     <!-- 검색 창 -->
-    <SearchView
+    <android.widget.SearchView
         android:layout_margin="20dp"
         android:id="@+id/search_view"
         android:layout_width="wrap_content"
@@ -68,15 +69,15 @@
             android:layout_marginLeft="90dp"
             />
         <!-- 텍스트 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="지도에서 위치 찾기"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="지도에서 위치 찾기"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            />
 
     </LinearLayout>
     <!--구분선-->
