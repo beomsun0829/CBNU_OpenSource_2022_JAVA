@@ -24,6 +24,8 @@ public class location_activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent =  new Intent(location_activity.this, home_activity.class); //위치지정
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent); //액티비티 이동
             }
         });

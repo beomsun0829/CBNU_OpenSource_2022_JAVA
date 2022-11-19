@@ -60,7 +60,6 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-
     <!--구분선-->
     <View
         android:layout_width="match_parent"

@@ -105,6 +105,8 @@ public class home_activity extends AppCompatActivity {
                 finish(); //현재 액티비티 종료 실행
                 overridePendingTransition(0,0);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent); //현재 액티비티 재실행 실시
                 overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
             }
