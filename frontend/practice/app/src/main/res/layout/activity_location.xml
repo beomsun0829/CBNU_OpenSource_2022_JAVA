@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <!-- 상단 툴바 레아이웃-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+        <!-- 뒤로가기 버튼 -->
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            android:layout_gravity="left"
+            />
+        <!-- 상단 바 이름 텍스트 -->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="위 치"
+            android:textSize="30dp"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.05dp"
+        android:layout_centerInParent="true"
+        android:background="#BBBBBB"/>
+    <!-- 검색 창 -->
+    <SearchView
+        android:layout_margin="20dp"
+        android:id="@+id/search_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:layout_gravity="center"
+        android:queryHint="위치를 입력해주세요"
+
+        />
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:background="#666666"/>
+    <!-- 지도에서 위치 찾기 레이아웃 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!-- 아이콘 -->
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_my_location_24"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="90dp"
+            />
+        <!-- 텍스트 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="지도에서 위치 찾기"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        />
+
+    </LinearLayout>
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:background="#666666"/>
+
+</LinearLayout>

@@ -33,6 +33,10 @@ public class ListViewAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.listview_item,parent,false);
+            ViewGroup.LayoutParams layoutParams = convertView.getLayoutParams();
+            layoutParams.height = 600;
+
+            convertView.setLayoutParams(layoutParams);
         }
 
         titleTextview = (TextView) convertView.findViewById(R.id.title);

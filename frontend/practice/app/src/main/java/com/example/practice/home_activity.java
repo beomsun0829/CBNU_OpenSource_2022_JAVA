@@ -25,15 +25,14 @@ public class home_activity extends AppCompatActivity {
         listview.setAdapter(adapter);
         //listview.setOnItemClickListener(listener);
 
-        adapter.addItem("제목1", R.drawable.test, "내용1");  //(제목 부분, 이미지, 내용)
-        adapter.addItem("제목2", R.drawable.test, "내용2");
-        adapter.addItem("제목3", R.drawable.test, "내용3");
-        adapter.addItem("제목4", R.drawable.test, "내용4");
-        adapter.addItem("제목5", R.drawable.test, "내용5");
-        adapter.addItem("제목6", R.drawable.test, "내용6");
-        adapter.addItem("제목7", R.drawable.test, "내용7");
-        adapter.addItem("제목8", R.drawable.test, "내용8");
-        adapter.addItem("제목9", R.drawable.test, "내용9");
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");  //(제목 부분, 이미지, 내용)
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
+        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
 
 
         adapter.notifyDataSetChanged(); //어댑터의 변경을 알림.
