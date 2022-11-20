@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,9 +20,7 @@ public class ApiExplorer {
     static String MainURL_FaclList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getDisConvFaclList";
     static String MainURL_ConvList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getFacInfoOpenApiJpEvalInfoList";
 
-    public static String main(String[] args, String U) throws IOException {
-
-        StringBuilder urlBuilder = new StringBuilder(U);
+    public static String Explorer(String[] args, StringBuilder urlBuilder) throws IOException {
 
         URL url = new URL(urlBuilder.toString());
         url = getFinalURL(url); // 302 found redirection
@@ -30,6 +29,7 @@ public class ApiExplorer {
         conn.setInstanceFollowRedirects(true);
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
+
         System.out.println("Response code: " + conn.getResponseCode());
 
         BufferedReader rd;
@@ -53,10 +53,17 @@ public class ApiExplorer {
         // "./backend/src/main/java/com/cbnuopensource2022java/data/Data.txt");
     }
 
-    public static String getLocations() throws IOException {
-        String U = MainURL_FaclList;
-        U += "?serviceKey=" + ServiceKey;
-        return main(null, U);
+    public static String getLocation() throws IOException {
+        StringBuilder U = new StringBuilder(MainURL_FaclList);
+        U.append("?" + "serviceKey=" + ServiceKey);
+        return Explorer(null, U);
+    }
+
+    public static String getLocationByName(String name) throws IOException {
+        StringBuilder U = new StringBuilder(MainURL_FaclList);
+        U.append("?" + "serviceKey=" + ServiceKey);
+        U.append("&" + "faclNm=" + URLEncoder.encode(name, "UTF-8"));
+        return Explorer(null, U);
     }
 
     public static String xmlToJson(String xml) throws JSONException {

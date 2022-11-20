@@ -17,16 +17,19 @@ import java.util.Optional;
 public class LocationService {
     private LocationRepository locationRepository;
 
-    public String getLocations() throws IOException {
-        String LocationList = ApiExplorer.getLocations();
-        return LocationList;
+    public String getLocation() throws IOException {
+        return ApiExplorer.getLocation();
+    }
+
+    public String getLocationByName(String name) throws IOException {
+        return ApiExplorer.getLocationByName(name);
     }
 
     public List<Location> getLocationListInDB() throws IOException {
         return locationRepository.findAll();
     }
 
-    public Optional<Location> getLocationById(int id) {
+    public Optional<Location> getLocationByIdInDB(int id) {
         return locationRepository.findById(id);
     }
 

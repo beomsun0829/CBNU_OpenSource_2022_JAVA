@@ -18,6 +18,18 @@ public class Controller {
 
     private final LocationService testService;
 
+    @GetMapping("api/location")
+    public String getLocation() throws IOException {
+        return testService.getLocation();
+    }
+
+    @GetMapping("api/location/{name}")
+    public String getLocationByName(@PathVariable("name") String name) throws IOException {
+        return testService.getLocationByName(name);
+    }
+
+    // ---------test------------
+
     @GetMapping("/test")
     public String test() {
         return "Test Api";
@@ -29,12 +41,7 @@ public class Controller {
     }
 
     @GetMapping("api/test/{id}")
-    public Optional<Location> getLocationById(@PathVariable("id") int id) {
-        return testService.getLocationById(id);
-    }
-
-    @GetMapping("api/location")
-    public String getLocations() throws IOException {
-        return testService.getLocations();
+    public Optional<Location> getLocationByIdInDB(@PathVariable("id") int id) {
+        return testService.getLocationByIdInDB(id);
     }
 }
