@@ -21,10 +21,7 @@ public class initiate_activity extends AppCompatActivity {
         setContentView(R.layout.activity_initiate);
 
         //버튼 4개 연결
-        bt1 = findViewById(R.id.button1);
-        bt2 = findViewById(R.id.button2);
-        bt3 = findViewById(R.id.button3);
-        bt4 = findViewById(R.id.button4);
+
 
 
         //홈 화면 가기

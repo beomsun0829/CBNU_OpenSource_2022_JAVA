@@ -1,92 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".info_activity">
-
-
-    <Button
-        android:id="@+id/bookmark_button"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:text="즐겨찾기"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
-
-    <Button
-        android:id="@+id/list_button"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:text="시설목록"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
-
-    <Button
-        android:id="@+id/map_button"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:text="길찾기"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
-
-    <TextView
-        android:id="@+id/text_name"
-        android:layout_width="427dp"
-        android:layout_height="62dp"
-        android:gravity="center"
-        android:text="청주 장애인 복지관"
-        android:textSize="44dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- -->
+    <!-- 맨위  사진 -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/listimage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--스크롤 뷰-->
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        <!--레이아웃 집합-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_address"
-        android:layout_width="408dp"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:text="충북 청주시 흥덕구 무심서로 851"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- 즐겨 찾기 -->
+                <ImageView
 
-    <TextView
-        android:id="@+id/text_tel"
-        android:layout_width="410dp"
-        android:layout_height="47dp"
-        android:autoLink="phone"
-        android:gravity="center"
-        android:text="043-275-7411"
-        android:textSize="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_baseline_bookmark_24"
+                    />
+                <!-- 카테고리 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="복지 시설"
+                    android:gravity="right"
+                    android:textSize="20dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+            <!--시설물 이름-->
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="청주 장애인 복지관"
+                android:textColor="#000000"
+                android:textSize="44dp" />
+            <!--전화 번호-->
+            <TextView
+                android:id="@+id/text_tel"
+                android:layout_width="410dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autoLink="phone"
+                android:gravity="center"
+                android:text="043-275-7411"
+                android:textSize="40dp" />
+            <!-- 텍스트 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="↑번호를 누르면 전화가 됩니다"
+                android:textSize="20dp" />
+            <!-- 주소 -->
+            <TextView
+                android:id="@+id/text_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:gravity="center"
+                android:text="충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2"
+                android:textColor="#000000"
+                android:textSize="24dp" />
+
+
+<!--            하단버튼 2개-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="9">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                </LinearLayout>
+
+                <!-- 지도 버튼 -->
+                <Button
+                    android:id="@+id/map_button"
+                    android:layout_width="150dp"
+                    android:layout_height="68dp"
+                    android:layout_gravity="right"
+                    android:layout_weight="3"
+                    android:background="@drawable/button_round"
+                    android:text="지도"
+                    android:textSize="35dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                </LinearLayout>
+
+                <!-- 시설물 버튼 -->
+                <Button
+                    android:id="@+id/facilities_button"
+                    android:layout_width="150dp"
+                    android:layout_height="68dp"
+                    android:layout_gravity="right"
+                    android:layout_weight="3"
+                    android:background="@drawable/button_round"
+                    android:text="시설물"
+                    android:textSize="35dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+<!--    &lt;!&ndash;하단 바&ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        >-->
+<!--        &lt;!&ndash; 홈 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/home"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_home_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"-->
+<!--            />-->
+
+
+<!--        &lt;!&ndash; 즐겨찾기 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/bookmark"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_bookmark_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"      />-->
+
+
+<!--        &lt;!&ndash; 검색 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/search"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_search_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"      />-->
+<!--    </LinearLayout>-->
+</LinearLayout>
