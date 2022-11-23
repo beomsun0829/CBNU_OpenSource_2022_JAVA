@@ -71,7 +71,16 @@ public class ApiExplorer {
     public static String getUtilById(String id) throws IOException {
         StringBuilder U = new StringBuilder(MainURL_UtilList);
         U.append("?" + "serviceKey=" + ServiceKey);
+        System.out.println(id);
+
+        while (id.length() < 10) {
+            id = '0' + id;
+        }
+
+        System.out.println(id);
+
         U.append("&" + "wfcltId=" + id); // 관리시설 id
+
         return Explorer(null, U);
     }
 
