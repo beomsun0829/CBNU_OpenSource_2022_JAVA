@@ -28,6 +28,11 @@ public class Controller {
         return testService.getLocationByName(name);
     }
 
+    @GetMapping("api/util/{id}")
+    public String getUtilById(@PathVariable("id") String id) throws IOException {
+        return testService.getUtilById(id);
+    }
+
     // ---------test------------
 
     @GetMapping("/test")

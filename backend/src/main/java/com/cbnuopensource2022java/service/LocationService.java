@@ -25,6 +25,11 @@ public class LocationService {
         return ApiExplorer.getLocationByName(name);
     }
 
+    public String getUtilById(String id) throws IOException {
+        return ApiExplorer.getUtilById(id);
+    }
+
+    // ---------test------------
     public List<Location> getLocationListInDB() throws IOException {
         return locationRepository.findAll();
     }
