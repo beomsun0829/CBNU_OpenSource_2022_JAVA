@@ -20,7 +20,7 @@ public class Controller {
     private final LocationService testService;
 
     @GetMapping("api/location")
-    public String getLocationByName(@RequestParam("name") String name) throws IOException {
+    public String getLocationByName(@RequestParam(value = "name", required = false) String name) throws IOException {
         if (name == null) {
             return testService.getLocation();
         }
