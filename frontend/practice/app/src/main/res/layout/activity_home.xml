@@ -6,19 +6,15 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/white">
-
-
-
-
     <!-- 상단 툴바 레아이웃-->
     <androidx.appcompat.widget.Toolbar
 
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:background="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme">
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
         <!-- 내 현재 위치 텍스트-->
         <TextView
             android:id="@+id/adress"
@@ -36,29 +32,25 @@
             android:src="@drawable/ic_baseline_settings_24"
             android:layout_gravity="right"
             />
-        </androidx.appcompat.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
     <!--구분선-->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_centerInParent="true"
         android:background="#BBBBBB"/>
-
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id='@+id/swipe_layout'
         android:layout_width="match_parent"
         android:layout_height="605dp">
 
-
-        <!-- 목록 -->
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+    <FrameLayout
+        android:id="@+id/fragmentFrame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
     <!--구분선-->
     <View
@@ -106,5 +98,6 @@
             android:layout_weight="1"   />
 
     </LinearLayout>
+
 
 </LinearLayout>

@@ -1,62 +1,49 @@
 package com.example.practice;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class home_activity extends AppCompatActivity {
+import com.example.practice.list_Fragment;
 
+public class home_activity extends AppCompatActivity {
+    private list_Fragment list_fragment;
     private ListView listview ;
-    private com.example.practice.ListViewAdapter adapter;
+    private ListViewAdapter adapter;
+    private ImageView home; //왼쪽 아래 홈버튼
     private TextView adress;// 왼쪽위 주소버튼
     private ImageView setting; //오른쪽 위 세팅버튼
-    private ImageView home; //왼쪽 아래 홈버튼
     private ImageView bookmark; //중앙 아래 북마크버튼
     private ImageView search; //오른쪽 아래 검색버튼
-
     private SwipeRefreshLayout swipeRefreshLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Adapter 생성
-        adapter = new com.example.practice.ListViewAdapter();
+        list_fragment = new list_Fragment();
 
-        // 리스트뷰 참조 및 Adapter 달기
-        listview = (ListView) findViewById(R.id.listview);
-        listview.setAdapter(adapter);
-        //listview.setOnItemClickListener(listener);
+        //프래그먼트 매니저 획득
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");  //(제목 부분, 이미지, 내용)
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
-        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
+        //프래그먼트 Transaction 획득
+        //프래그먼트를 올리거나 교체하는 작업을 Transaction이라고 합니다.
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //프래그먼트를 FrameLayout의 자식으로 등록해줍니다.
+        fragmentTransaction.add(R.id.fragmentFrame,list_fragment );
 
-
-        adapter.notifyDataSetChanged(); //어댑터의 변경을 알림.
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent =  new Intent(home_activity.this , info_activity.class); //위치지정
-                startActivity(intent); //액티비티 이동
-            }
-        });
+        //commit을 하면 자식으로 등록된 프래그먼트가 화면에 보여집니다.
+        fragmentTransaction.commit();
         // 주소 버튼 누르기
         adress = (TextView) findViewById(R.id.adress);
         adress.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +53,6 @@ public class home_activity extends AppCompatActivity {
                 startActivity(intent); //액티비티 이동
             }
         });
-
         // 설정 버튼 누르기
         setting = (ImageView) findViewById(R.id.setting);
         setting.setOnClickListener(new View.OnClickListener() {
@@ -95,20 +81,13 @@ public class home_activity extends AppCompatActivity {
                 startActivity(intent); //액티비티 이동
             }
         });
-
         // 홈 버튼 누르기
         home = (ImageView) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                finish(); //현재 액티비티 종료 실행
-                overridePendingTransition(0,0);
-                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent); //현재 액티비티 재실행 실시
-                overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.detach(list_fragment).attach(list_fragment).commit();
             }
         });
         swipeRefreshLayout = findViewById(R.id.swipe_layout);
@@ -123,7 +102,7 @@ public class home_activity extends AppCompatActivity {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
 
     }
 
-}
