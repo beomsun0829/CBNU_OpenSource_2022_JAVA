@@ -19,6 +19,7 @@ public class ApiExplorer {
     static String ServiceKey = "3OKTaXNqEaQc5eoKYPtmEO0rjIOpOeLVL3slK8F0azOxSsLyVrdT7jGyBNArNLcqyaZxnrK7fTy6XCQM%2FjSbbA%3D%3D";
     static String MainURL_FaclList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getDisConvFaclList";
     static String MainURL_ConvList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getFacInfoOpenApiJpEvalInfoList";
+    static String MaxNumOfRows = "1000";
 
     public static String Explorer(String[] args, StringBuilder urlBuilder) throws IOException {
 
@@ -56,6 +57,7 @@ public class ApiExplorer {
     public static String getLocation() throws IOException {
         StringBuilder U = new StringBuilder(MainURL_FaclList);
         U.append("?" + "serviceKey=" + ServiceKey);
+        U.append("&" + "numOfRows=" + MaxNumOfRows);
         return Explorer(null, U);
     }
 
