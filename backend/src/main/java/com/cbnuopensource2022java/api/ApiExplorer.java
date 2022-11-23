@@ -22,7 +22,6 @@ public class ApiExplorer {
     static String MaxNumOfRows = "1000";
 
     public static String Explorer(String[] args, StringBuilder urlBuilder) throws IOException {
-
         URL url = new URL(urlBuilder.toString());
         url = getFinalURL(url); // 302 found redirection
 
@@ -54,10 +53,11 @@ public class ApiExplorer {
         // "./backend/src/main/java/com/cbnuopensource2022java/data/Data.txt");
     }
 
-    public static String getLocation() throws IOException {
+    public static String getLocation(String page) throws IOException {
         StringBuilder U = new StringBuilder(MainURL_FaclList);
         U.append("?" + "serviceKey=" + ServiceKey);
         U.append("&" + "numOfRows=" + MaxNumOfRows);
+        U.append("&" + "pageNo=" + page);
         return Explorer(null, U);
     }
 
@@ -68,19 +68,21 @@ public class ApiExplorer {
         return Explorer(null, U);
     }
 
+    public static String getLocations() throws IOException {
+        String result = "";
+        for (int i = 1; i <= 145; i++) {
+            result += getLocation(Integer.toString(i));
+        }
+        return result;
+    }
+
     public static String getUtilById(String id) throws IOException {
+        while (id.length() < 10)
+            id = '0' + id;
+
         StringBuilder U = new StringBuilder(MainURL_UtilList);
         U.append("?" + "serviceKey=" + ServiceKey);
-        System.out.println(id);
-
-        while (id.length() < 10) {
-            id = '0' + id;
-        }
-
-        System.out.println(id);
-
         U.append("&" + "wfcltId=" + id); // 관리시설 id
-
         return Explorer(null, U);
     }
 

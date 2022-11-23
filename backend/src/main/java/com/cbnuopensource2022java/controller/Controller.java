@@ -3,6 +3,7 @@ package com.cbnuopensource2022java.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cbnuopensource2022java.entity.Location;
@@ -19,12 +20,13 @@ public class Controller {
     private final LocationService testService;
 
     @GetMapping("api/location")
-    public String getLocation() throws IOException {
-        return testService.getLocation();
-    }
+    public String getLocationByName(@RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "page", defaultValue = "1") String page) throws IOException {
 
-    @GetMapping("api/location/{name}")
-    public String getLocationByName(@PathVariable("name") String name) throws IOException {
+        if (name == null) {
+            return testService.getLocation(page);
+        }
+
         return testService.getLocationByName(name);
     }
 

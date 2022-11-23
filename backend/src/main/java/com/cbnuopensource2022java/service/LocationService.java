@@ -17,8 +17,8 @@ import java.util.Optional;
 public class LocationService {
     private LocationRepository locationRepository;
 
-    public String getLocation() throws IOException {
-        return ApiExplorer.getLocation();
+    public String getLocation(String page) throws IOException {
+        return ApiExplorer.getLocation(page);
     }
 
     public String getLocationByName(String name) throws IOException {
@@ -27,6 +27,10 @@ public class LocationService {
 
     public String getUtilById(String id) throws IOException {
         return ApiExplorer.getUtilById(id);
+    }
+
+    public String InitDB() throws IOException {
+        return "a";
     }
 
     // ---------test------------
