@@ -15,8 +15,7 @@ import lombok.AllArgsConstructor;
 @Entity
 public class Location {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id; // wfcltId
     private String name; // faclNm
     private String tycode; // faclTyCd
     private String address; // lcMnad

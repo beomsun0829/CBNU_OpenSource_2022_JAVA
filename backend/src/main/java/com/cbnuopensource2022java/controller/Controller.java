@@ -20,9 +20,11 @@ public class Controller {
     private final LocationService testService;
 
     @GetMapping("api/location")
-    public String getLocationByName(@RequestParam(value = "name", required = false) String name) throws IOException {
+    public String getLocationByName(@RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "page", defaultValue = "1") String page) throws IOException {
+
         if (name == null) {
-            return testService.getLocation();
+            return testService.getLocation(page);
         }
 
         return testService.getLocationByName(name);
