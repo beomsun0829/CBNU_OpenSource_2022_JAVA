@@ -29,8 +29,8 @@ public class LocationService {
         return ApiExplorer.getUtilById(id);
     }
 
-    public String InitDB() throws IOException {
-        return "a";
+    public String initDB() throws IOException {
+        return ApiExplorer.initDB();
     }
 
     // ---------test------------

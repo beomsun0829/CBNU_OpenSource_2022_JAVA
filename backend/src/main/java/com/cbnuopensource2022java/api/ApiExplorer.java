@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -58,7 +59,10 @@ public class ApiExplorer {
         U.append("?" + "serviceKey=" + ServiceKey);
         U.append("&" + "numOfRows=" + MaxNumOfRows);
         U.append("&" + "pageNo=" + page);
-        return Explorer(null, U);
+
+        JSONObject JSONobj = new JSONObject(Explorer(null, U));
+        JSONArray JSONarr = JSONobj.getJSONObject("facInfoList").getJSONArray("servList");
+        return JSONarr.toString();
     }
 
     public static String getLocationByName(String name) throws IOException {
@@ -84,6 +88,19 @@ public class ApiExplorer {
         U.append("?" + "serviceKey=" + ServiceKey);
         U.append("&" + "wfcltId=" + id); // 관리시설 id
         return Explorer(null, U);
+    }
+
+    public static String initDB() throws JSONException, IOException {
+        for (int i = 1; i <= 1; i++) {
+            JSONObject JSONobj = new JSONObject(getLocation(Integer.toString(i)));
+            JSONobj = JSONobj.getJSONObject("facInfoList");
+            JSONArray JSONarr = JSONobj.getJSONArray("servList");
+            for (int j = 0; j < 10; j++) {
+                JSONObject item = JSONarr.getJSONObject(j);
+                System.out.println(item.getString("wfcltId"));
+            }
+        }
+        return "";
     }
 
     public static String xmlToJson(String xml) throws JSONException {

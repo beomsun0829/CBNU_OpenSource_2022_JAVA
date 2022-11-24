@@ -35,6 +35,11 @@ public class Controller {
         return testService.getUtilById(id);
     }
 
+    @GetMapping("api/initdb")
+    public String initDB() throws IOException {
+        return testService.initDB();
+    }
+
     // ---------test------------
 
     @GetMapping("/test")
