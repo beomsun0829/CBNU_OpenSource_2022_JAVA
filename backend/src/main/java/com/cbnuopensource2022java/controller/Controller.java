@@ -1,8 +1,12 @@
 package com.cbnuopensource2022java.controller;
 
 import lombok.AllArgsConstructor;
+
+import org.apache.tomcat.util.json.ParseException;
+import org.json.JSONException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,10 +39,12 @@ public class Controller {
         return testService.getUtilById(id);
     }
 
-    @GetMapping("api/initdb")
-    public String initDB() throws IOException {
-        return testService.initDB();
-    }
+    /*
+     * @GetMapping("api/initdb")
+     * public String initDB() throws IOException, JSONException {
+     * return testService.initDB();
+     * }
+     */
 
     // ---------test------------
 

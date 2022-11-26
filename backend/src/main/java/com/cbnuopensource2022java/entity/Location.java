@@ -1,8 +1,6 @@
 package com.cbnuopensource2022java.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -19,7 +17,7 @@ public class Location {
     private String name; // faclNm
     private String tycode; // faclTyCd
     private String address; // lcMnad
-    private int statediv; // salStaDivCd
+    private String statediv; // salStaDivCd
     private String lat; // faclLat
     private String lng; // faclLng
 }
@@ -30,7 +28,7 @@ public class Location {
  * Name varchar(100)
  * TyCode varchar(45)
  * Address varchar(100)
- * StateDiv int
+ * StateDiv varchar(10)
  * Lat float
  * Lng float
  */

@@ -1,5 +1,7 @@
 package com.cbnuopensource2022java.service;
 
+import org.apache.tomcat.util.json.ParseException;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
 import com.cbnuopensource2022java.api.ApiExplorer;
@@ -29,8 +31,8 @@ public class LocationService {
         return ApiExplorer.getUtilById(id);
     }
 
-    public String initDB() throws IOException {
-        return ApiExplorer.initDB();
+    public String initDB() throws IOException, JSONException {
+        return ApiExplorer.initDB(locationRepository);
     }
 
     // ---------test------------

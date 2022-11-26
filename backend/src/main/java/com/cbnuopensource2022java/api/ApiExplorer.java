@@ -16,13 +16,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
+import com.cbnuopensource2022java.repository.LocationRepository;
+
 public class ApiExplorer {
     static String ServiceKey = "3OKTaXNqEaQc5eoKYPtmEO0rjIOpOeLVL3slK8F0azOxSsLyVrdT7jGyBNArNLcqyaZxnrK7fTy6XCQM%2FjSbbA%3D%3D";
     static String MainURL_FaclList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getDisConvFaclList";
     static String MainURL_UtilList = "http://apis.data.go.kr/B554287/DisabledPersonConvenientFacility/getFacInfoOpenApiJpEvalInfoList";
     static String MaxNumOfRows = "1000";
 
-    public static String Explorer(String[] args, StringBuilder urlBuilder) throws IOException {
+    public static JSONObject Explorer(String[] args, StringBuilder urlBuilder) throws IOException {
         URL url = new URL(urlBuilder.toString());
         url = getFinalURL(url); // 302 found redirection
 
@@ -46,8 +48,7 @@ public class ApiExplorer {
         conn.disconnect();
 
         JSONObject JSONobj = XML.toJSONObject(sb.toString());
-
-        return JSONobj.toString();
+        return JSONobj;
 
         // save sb to file
         // saveToFile(sb.toString(),
@@ -60,8 +61,8 @@ public class ApiExplorer {
         U.append("&" + "numOfRows=" + MaxNumOfRows);
         U.append("&" + "pageNo=" + page);
 
-        JSONObject JSONobj = new JSONObject(Explorer(null, U));
-        JSONArray JSONarr = JSONobj.getJSONObject("facInfoList").getJSONArray("servList");
+        JSONObject JSONobj = Explorer(null, U);
+        JSONArray JSONarr = rmUselessLocationData(JSONobj);
         return JSONarr.toString();
     }
 
@@ -69,7 +70,10 @@ public class ApiExplorer {
         StringBuilder U = new StringBuilder(MainURL_FaclList);
         U.append("?" + "serviceKey=" + ServiceKey);
         U.append("&" + "faclNm=" + URLEncoder.encode(name, "UTF-8"));
-        return Explorer(null, U);
+
+        JSONObject JSONobj = Explorer(null, U);
+        JSONArray JSONarr = rmUselessLocationData(JSONobj);
+        return JSONarr.toString();
     }
 
     public static String getLocations() throws IOException {
@@ -87,20 +91,45 @@ public class ApiExplorer {
         StringBuilder U = new StringBuilder(MainURL_UtilList);
         U.append("?" + "serviceKey=" + ServiceKey);
         U.append("&" + "wfcltId=" + id); // 관리시설 id
-        return Explorer(null, U);
+        return Explorer(null, U).toString();
     }
 
-    public static String initDB() throws JSONException, IOException {
-        for (int i = 1; i <= 1; i++) {
-            JSONObject JSONobj = new JSONObject(getLocation(Integer.toString(i)));
-            JSONobj = JSONobj.getJSONObject("facInfoList");
-            JSONArray JSONarr = JSONobj.getJSONArray("servList");
-            for (int j = 0; j < 10; j++) {
-                JSONObject item = JSONarr.getJSONObject(j);
-                System.out.println(item.getString("wfcltId"));
+    public static String initDB(LocationRepository locationRepository) throws JSONException, IOException {
+        locationRepository.deleteAll();
+
+        for (int i = 1; i <= 145; i++) {
+            JSONArray JSONarr = new JSONArray(getLocation(Integer.toString(i)));
+            System.out.println(JSONarr.toString());
+
+            for (int j = 0; j < 1000; j++) {
+                try {
+                    JSONObject item = JSONarr.getJSONObject(j);
+                    System.out.println("Saving :" + item.getString("wfcltId"));
+                    System.out.println("Saving :" + item.getString("faclNm"));
+                    System.out.println("Saving :" + item.getString("faclTyCd"));
+                    System.out.println("Saving :" + item.getString("lcMnad"));
+                    System.out.println("Saving :" + item.getString("salStaDivCd"));
+                    System.out.println("Saving :" + String.valueOf(item.getFloat("faclLat")));
+                    System.out.println("Saving :" + String.valueOf(item.getFloat("faclLng")));
+
+                    locationRepository.save(new com.cbnuopensource2022java.entity.Location(
+                            Integer.parseInt(item.getString("wfcltId")),
+                            item.getString("faclNm"),
+                            item.getString("faclTyCd"),
+                            item.getString("lcMnad"),
+                            item.getString("salStaDivCd"),
+                            String.valueOf(item.getFloat("faclLat")),
+                            String.valueOf(item.getFloat("faclLng"))));
+                } catch (Exception e) {
+                    System.out.println("page : " + i + "Skip" + j + "th item");
+                }
             }
         }
         return "";
+    }
+
+    public static JSONArray rmUselessLocationData(JSONObject JSONobj) {
+        return JSONobj.getJSONObject("facInfoList").getJSONArray("servList");
     }
 
     public static String xmlToJson(String xml) throws JSONException {
