@@ -2,15 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
     <!-- 상단 툴바 레아이웃-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="85dp"
 
-        android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
         <!-- 뒤로 가기 버튼 -->
@@ -27,7 +25,6 @@
             android:layout_width="wrap_content"
             android:text="설 정"
             android:textSize="30dp"
-            android:textColor="#000000"
             android:layout_gravity="center"
             />
 
@@ -46,24 +43,24 @@
         >
         <!-- 앱 설정1 -->
         <TextView
+            android:id="@+id/pontsize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="폰트 크기"
             android:textSize="40dp"
             android:gravity="left"
-            android:textColor="#000000"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"
             />
         <!-- 앱 설정2 -->
         <TextView
+            android:id="@+id/apptheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="앱 테마"
             android:textSize="40dp"
             android:gravity="left"
-            android:textColor="#000000"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"
@@ -75,7 +72,6 @@
             android:text="볼륨"
             android:textSize="40dp"
             android:gravity="left"
-            android:textColor="#000000"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"
@@ -87,7 +83,6 @@
             android:text="시각 장애인 모드"
             android:textSize="40dp"
             android:gravity="left"
-            android:textColor="#000000"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"
@@ -99,7 +94,6 @@
             android:text="캐시 데이터 지우기"
             android:textSize="40dp"
             android:gravity="left"
-            android:textColor="#000000"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"
@@ -111,7 +105,6 @@
             android:text="피드백"
             android:textSize="40dp"
             android:gravity="left"
-            android:textColor="#000000"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"

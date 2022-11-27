@@ -66,7 +66,6 @@
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:text="청주 장애인 복지관"
-                android:textColor="#000000"
                 android:textSize="44dp" />
             <!--전화 번호-->
             <TextView
@@ -94,7 +93,6 @@
                 android:layout_margin="30dp"
                 android:gravity="center"
                 android:text="충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2       충청북도 청주시 개신동 543-2"
-                android:textColor="#000000"
                 android:textSize="24dp" />
 
 

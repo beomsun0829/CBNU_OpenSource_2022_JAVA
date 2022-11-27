@@ -12,21 +12,26 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.practice.ui.login.LoginActivity;
+
+
 public class home_activity extends AppCompatActivity {
 
     private ListView listview;
     private com.example.practice.ListViewAdapter adapter;
     private TextView adress;// 왼쪽위 주소버튼
     private ImageView setting; //오른쪽 위 세팅버튼
-    private ImageView home; //왼쪽 아래 홈버튼
-    private ImageView bookmark; //중앙 아래 북마크버튼
+    private ImageView mypage; //중앙 아래 마이페이지버튼
+    private ImageView bookmark; //왼쪽 아래 북마크버튼
     private ImageView search; //오른쪽 아래 검색버튼
     private SwipeRefreshLayout swipeRefreshLayout;
+    public static int login_active = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         // Adapter 생성
         adapter = new com.example.practice.ListViewAdapter();
@@ -95,19 +100,21 @@ public class home_activity extends AppCompatActivity {
             }
         });
 
-        // 홈 버튼 누르기
-        home = (ImageView) findViewById(R.id.home);
-        home.setOnClickListener(new View.OnClickListener() {
+        // 마이 페이지 버튼 누르기
+        mypage = (ImageView) findViewById(R.id.mypage);
+        mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                finish(); //현재 액티비티 종료 실행
-                overridePendingTransition(0, 0);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent); //현재 액티비티 재실행 실시
-                overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+                if (login_active == 0) {
+                    Intent intent = new Intent(home_activity.this, LoginActivity.class); //위치지정
+                    startActivity(intent); //액티비티 이동
+                }
+
+                else if (login_active==1){
+                    Intent intent = new Intent(home_activity.this, mypage_activity.class); //위치지정
+                    startActivity(intent); //액티비티 이동
+                }
+
             }
         });
         swipeRefreshLayout = findViewById(R.id.swipe_layout);
