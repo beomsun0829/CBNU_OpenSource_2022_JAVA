@@ -98,6 +98,7 @@
                 android:textSize="24dp" />
 
 
+
             <!--            하단버튼 2개-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -155,41 +156,41 @@
         </LinearLayout>
 
     </ScrollView>
-    <!--    &lt;!&ndash;하단 바&ndash;&gt;-->
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/linearLayout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        >-->
-    <!--        &lt;!&ndash; 홈 버튼 &ndash;&gt;-->
-    <!--        <ImageView-->
-    <!--            android:id="@+id/home"-->
-    <!--            android:layout_width="50dp"-->
-    <!--            android:layout_height="50dp"-->
-    <!--            android:src="@drawable/ic_baseline_home_24"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_weight="1"-->
-    <!--            />-->
+<!--    &lt;!&ndash;하단 바&ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        >-->
+<!--        &lt;!&ndash; 홈 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/home"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_home_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"-->
+<!--            />-->
 
 
-    <!--        &lt;!&ndash; 즐겨찾기 버튼 &ndash;&gt;-->
-    <!--        <ImageView-->
-    <!--            android:id="@+id/bookmark"-->
-    <!--            android:layout_width="50dp"-->
-    <!--            android:layout_height="50dp"-->
-    <!--            android:src="@drawable/ic_baseline_bookmark_24"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_weight="1"      />-->
+<!--        &lt;!&ndash; 즐겨찾기 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/bookmark"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_bookmark_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"      />-->
 
 
-    <!--        &lt;!&ndash; 검색 버튼 &ndash;&gt;-->
-    <!--        <ImageView-->
-    <!--            android:id="@+id/search"-->
-    <!--            android:layout_width="50dp"-->
-    <!--            android:layout_height="50dp"-->
-    <!--            android:src="@drawable/ic_baseline_search_24"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_weight="1"      />-->
-    <!--    </LinearLayout>-->
+<!--        &lt;!&ndash; 검색 버튼 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/search"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/ic_baseline_search_24"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_weight="1"      />-->
+<!--    </LinearLayout>-->
 </LinearLayout>

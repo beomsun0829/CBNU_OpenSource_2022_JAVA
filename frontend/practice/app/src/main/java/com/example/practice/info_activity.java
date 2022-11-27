@@ -25,6 +25,10 @@ import java.util.ArrayList;
 
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class info_activity extends AppCompatActivity {
 
 
@@ -36,6 +40,7 @@ public class info_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
+
         map_button= findViewById(R.id.map_button);
         map_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +50,6 @@ public class info_activity extends AppCompatActivity {
             }
         });
 
-
         facilities_button= findViewById(R.id.facilities_button);
         facilities_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +58,14 @@ public class info_activity extends AppCompatActivity {
                 startActivity(intent_map);
             }
         });
+
+
+
+
+
+
+
+
 
 
     }
