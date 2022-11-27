@@ -60,7 +60,7 @@ public class home_activity extends AppCompatActivity {
         adress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home_activity.this, location_activity.class); //위치지정
+                Intent intent = new Intent(home_activity.this, data_activity.class); //위치지정
                 startActivity(intent); //액티비티 이동
             }
         });
@@ -71,6 +71,7 @@ public class home_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(home_activity.this, setting_activity.class); //위치지정
+
                 startActivity(intent); //액티비티 이동
             }
         });
