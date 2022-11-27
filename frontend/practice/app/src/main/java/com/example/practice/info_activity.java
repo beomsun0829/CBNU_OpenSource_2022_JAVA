@@ -35,10 +35,27 @@ public class info_activity extends AppCompatActivity {
     private Button map_button;
     private Button facilities_button;
 
+    private TextView text_name;
+    private TextView text_address;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        Intent intent = getIntent();
+        String str1 = intent.getStringExtra("str1"); //스트링을 받음 시설명
+        text_name = findViewById(R.id.text_name);
+        text_name.setText(str1); //받아온 str1 넣음
+
+        String str2 = intent.getStringExtra("str2"); //스트링을 받음 주소
+        text_address = findViewById(R.id.text_address);
+        text_address.setText(str2); //받아온 str2 넣음
+
+        String str3 = intent.getStringExtra("str3"); //스트링을 받음 경도
+        String str4 = intent.getStringExtra("str4"); //스트링을 받음 위도
+
+
 
 
         map_button= findViewById(R.id.map_button);
