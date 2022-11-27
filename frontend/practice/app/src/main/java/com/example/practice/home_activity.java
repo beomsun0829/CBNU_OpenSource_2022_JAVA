@@ -58,7 +58,7 @@ public class home_activity extends AppCompatActivity {
         //listview.setOnItemClickListener(listener);
 
 
-        call = retrofit_client.getApiService().test_api_get("서산"); // interface get함수 가져오기
+        call = retrofit_client.getApiService().test_api_get("충북대학교"); // interface get함수 가져오기
         call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
             @Override
@@ -115,10 +115,10 @@ public class home_activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(home_activity.this, info_activity.class); //위치지정
-                intent.putExtra("str1",namelist[i]); //str1 쏴주기 반대편으로
-                intent.putExtra("str2",fadresslist[i]); //str2 쏴주기 반대편으로
-                intent.putExtra("str3",Lnglist[i]); //str3 쏴주기 반대편으로
-                intent.putExtra("str4",Latlist[i]); //str4 쏴주기 반대편으로
+                intent.putExtra("str_name",namelist[i]); //str1 쏴주기 반대편으로
+                intent.putExtra("str_address",fadresslist[i]); //str2 쏴주기 반대편으로
+                intent.putExtra("str_lng",Lnglist[i]); //str3 쏴주기 반대편으로
+                intent.putExtra("str_lat",Latlist[i]); //str4 쏴주기 반대편으로
                 startActivity(intent); //액티비티 이동
             }
         });

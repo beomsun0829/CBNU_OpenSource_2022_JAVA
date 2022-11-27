@@ -4,6 +4,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -14,6 +17,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +27,7 @@ import static android.media.AudioTrack.ERROR;
 import android.widget.Toast;
 import java.util.ArrayList;
 
+import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -38,32 +43,62 @@ public class info_activity extends AppCompatActivity {
     private TextView text_name;
     private TextView text_address;
 
+    private String dlat;
+    private String dlng;
+    private String dname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
         Intent intent = getIntent();
-        String str1 = intent.getStringExtra("str1"); //스트링을 받음 시설명
+        String str_name = intent.getStringExtra("str_name"); //스트링을 받음 시설명
         text_name = findViewById(R.id.text_name);
-        text_name.setText(str1); //받아온 str1 넣음
+        text_name.setText(str_name); //이름 넣음
 
-        String str2 = intent.getStringExtra("str2"); //스트링을 받음 주소
+        String str_address = intent.getStringExtra("str_address"); //스트링을 받음 주소
         text_address = findViewById(R.id.text_address);
-        text_address.setText(str2); //받아온 str2 넣음
+        text_address.setText(str_address); //주소 출력
 
-        String str3 = intent.getStringExtra("str3"); //스트링을 받음 경도
-        String str4 = intent.getStringExtra("str4"); //스트링을 받음 위도
-
-
+        String str_lat = intent.getStringExtra("str_lat"); //스트링을 받음 경도
+        String str_lng = intent.getStringExtra("str_lng"); //스트링을 받음 위도
 
 
         map_button= findViewById(R.id.map_button);
         map_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_map = new Intent(info_activity.this,map_activity.class);
-                startActivity(intent_map);
+
+                Log.e("**********lat*********",str_lat);
+                Log.e("**********lng*********",str_lng);
+
+                dlat = str_lat;            //위도
+                dlng = str_lng;             //경도
+                dname = str_name;           //이름
+
+                String url = "nmap://route/public?dlat=" +
+                        dlat +
+                        "&dlng=" +
+                        dlng +
+                        "&dname=" +
+                        dname +
+                        "&appname=com.example.practice";
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+
+                List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                startActivity(intent);
+
+//                if (list == null || list.isEmpty()) {
+//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.nhn.android.nmap")));
+//                } else {
+//                    startActivity(intent);
+//                }
+
+
             }
         });
 
@@ -75,15 +110,6 @@ public class info_activity extends AppCompatActivity {
                 startActivity(intent_map);
             }
         });
-
-
-
-
-
-
-
-
-
 
     }
 
