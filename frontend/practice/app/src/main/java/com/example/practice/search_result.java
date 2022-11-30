@@ -26,10 +26,10 @@ public class search_result extends AppCompatActivity {
     Call<List<data_model>> call;
 
 
-    String[] namelist=new String[20];
-    String[] fadresslist=new String[20];
-    String[] Lnglist = new String[20]; //경도
-    String[] Latlist = new String[20]; //위도
+    String[] namelist=new String[1000];
+    String[] fadresslist=new String[1000];
+    String[] Lnglist = new String[1000]; //경도
+    String[] Latlist = new String[1000]; //위도
 
 
 
@@ -50,7 +50,7 @@ public class search_result extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(adapter);
 
-        call = retrofit_client.getApiService().test_api_get(search_text); // interface get함수 가져오기
+        call = retrofit_client.getApiService().get_Nm(search_text); // interface get함수 가져오기
         call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
             @Override

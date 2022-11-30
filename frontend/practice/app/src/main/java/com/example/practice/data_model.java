@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class data_model
 {
-    @SerializedName("estbDate")
-    @Expose
-    private String estbDate;
-
     @SerializedName("faclNm")
     @Expose
     private String faclNm;
@@ -21,10 +17,6 @@ public class data_model
     @Expose
     private String faclLng;
 
-    @SerializedName("salStaNm")
-    @Expose
-    private String salStaNm;
-
     @SerializedName("lcMnad")
     @Expose
     private String lcMnad;
@@ -33,35 +25,14 @@ public class data_model
     @Expose
     private String salStaDivCd;
 
-    @SerializedName("wfcltDivCd")
-    @Expose
-    private String wfcltDivCd;
-
-    @SerializedName("faclInfId")
-    @Expose
-    private String faclInfId;
-
     @SerializedName("faclLat")
     @Expose
     private String faclLat;
-
-    @SerializedName("faclRprnNm")
-    @Expose
-    private String faclRprnNm;
 
     @SerializedName("wfcltId")
     @Expose
     private String wfcltId;
 
-    public String getEstbDate ()
-    {
-        return estbDate;
-    }
-
-    public void setEstbDate (String estbDate)
-    {
-        this.estbDate = estbDate;
-    }
 
     public String getFaclNm ()
     {
@@ -93,16 +64,6 @@ public class data_model
         this.faclLng = faclLng;
     }
 
-    public String getSalStaNm ()
-    {
-        return salStaNm;
-    }
-
-    public void setSalStaNm (String salStaNm)
-    {
-        this.salStaNm = salStaNm;
-    }
-
     public String getLcMnad ()
     {
         return lcMnad;
@@ -123,26 +84,6 @@ public class data_model
         this.salStaDivCd = salStaDivCd;
     }
 
-    public String getWfcltDivCd ()
-    {
-        return wfcltDivCd;
-    }
-
-    public void setWfcltDivCd (String wfcltDivCd)
-    {
-        this.wfcltDivCd = wfcltDivCd;
-    }
-
-    public String getFaclInfId ()
-    {
-        return faclInfId;
-    }
-
-    public void setFaclInfId (String faclInfId)
-    {
-        this.faclInfId = faclInfId;
-    }
-
     public String getFaclLat ()
     {
         return faclLat;
@@ -151,16 +92,6 @@ public class data_model
     public void setFaclLat (String faclLat)
     {
         this.faclLat = faclLat;
-    }
-
-    public String getFaclRprnNm ()
-    {
-        return faclRprnNm;
-    }
-
-    public void setFaclRprnNm (String faclRprnNm)
-    {
-        this.faclRprnNm = faclRprnNm;
     }
 
     public String getWfcltId ()
@@ -176,6 +107,6 @@ public class data_model
     @Override
     public String toString()
     {
-        return "estbDate = "+estbDate+"\n faclNm = "+faclNm+"\n faclTyCd = "+faclTyCd+"\n faclLng = "+faclLng+"\n salStaNm = "+salStaNm+"\n lcMnad = "+lcMnad+"\n salStaDivCd = "+salStaDivCd+"\n wfcltDivCd = "+wfcltDivCd+"\n faclInfId = "+faclInfId+"\n faclLat = "+faclLat+"\n faclRprnNm = "+faclRprnNm+"\n wfcltId = "+wfcltId+"\n\n\n";
+        return "faclNm = "+faclNm+"\n faclTyCd = "+faclTyCd+"\n faclLng = "+faclLng+"\n lcMnad = "+lcMnad+"\n salStaDivCd = "+salStaDivCd+"\n faclLat = "+faclLat+"\n wfcltId = "+wfcltId+"\n\n\n";
     }
 }

@@ -1,8 +1,15 @@
 package com.example.practice;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -10,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.practice.ui.login.LoginActivity;
@@ -37,10 +46,12 @@ public class home_activity extends AppCompatActivity {
     Call<List<data_model>> call;
     String name = "";
     String fadress = "";
-    String[] namelist=new String[20];
-    String[] fadresslist=new String[20];
-    String[] Lnglist = new String[20]; //경도
-    String[] Latlist = new String[20]; //위도
+    String[] namelist=new String[1000];
+    String[] fadresslist=new String[1000];
+    String[] Lnglist = new String[1000]; //경도
+    String[] Latlist = new String[1000]; //위도
+    String cur_lat;
+    String cur_lng;
 
 
 
@@ -62,7 +73,38 @@ public class home_activity extends AppCompatActivity {
         listview.setAdapter(adapter);
         //listview.setOnItemClickListener(listener);
 
-        call = retrofit_client.getApiService().test_api_get("서울"); // interface get함수 가져오기
+
+        // 사용자 위도, 경도 받기
+        LocationManager locationManager = (LocationManager)
+                getSystemService(Context.LOCATION_SERVICE);
+
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions( home_activity.this, new String[] {
+                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0 );
+        }
+        else {
+            Location loc_Current = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (loc_Current != null) {
+                cur_lat = (String.valueOf(loc_Current.getLatitude()));
+                cur_lng = (String.valueOf(loc_Current.getLongitude()));
+            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    1000,
+                    1,
+                    gpsLocationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                    1000,
+                    1,
+                    gpsLocationListener);
+        }
+
+        Log.e("lat", cur_lat);
+        Log.e("lng", cur_lng);
+
+
+
+        call = retrofit_client.getApiService().get_Lat_Lng(cur_lat, cur_lng); // interface get함수 가져오기
         call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
             @Override
@@ -196,4 +238,23 @@ public class home_activity extends AppCompatActivity {
             }
         });
     }
+
+    final LocationListener gpsLocationListener = new LocationListener() {
+        public void onLocationChanged(Location location) {
+
+            String provider = location.getProvider();
+            cur_lat = String.valueOf(location.getLatitude());
+            cur_lng = String.valueOf(location.getLongitude());
+            Log.e("lat", cur_lat);
+            Log.e("lng", cur_lng);
+        }
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        } public void onProviderEnabled(String provider) {
+
+        } public void onProviderDisabled(String provider) {
+
+        }
+    };
+
 }
