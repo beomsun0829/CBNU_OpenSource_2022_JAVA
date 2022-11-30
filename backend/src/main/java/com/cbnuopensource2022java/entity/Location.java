@@ -13,22 +13,11 @@ import lombok.AllArgsConstructor;
 @Entity
 public class Location {
     @Id
-    private int id; // wfcltId
-    private String name; // faclNm
-    private String tycode; // faclTyCd
-    private String address; // lcMnad
-    private String statediv; // salStaDivCd
-    private String lat; // faclLat
-    private String lng; // faclLng
+    private int wfcltId; // wfcltId
+    private String faclNm; // faclNm
+    private String faclTyCd; // faclTyCd
+    private String lcMnad; // lcMnad
+    private String salStaDivCd; // salStaDivCd
+    private String faclLat; // faclLat
+    private String faclLng; // faclLng
 }
-
-/*
- * Columns:
- * Id int PK
- * Name varchar(100)
- * TyCode varchar(45)
- * Address varchar(100)
- * StateDiv varchar(10)
- * Lat float
- * Lng float
- */

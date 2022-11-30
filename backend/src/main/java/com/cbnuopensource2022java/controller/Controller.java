@@ -23,7 +23,7 @@ public class Controller {
 
     private final LocationService testService;
 
-    @GetMapping("api/location")
+    @GetMapping("api/locationsearch")
     public String getLocationByName(@RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "page", defaultValue = "1") String page) throws IOException {
 
@@ -34,11 +34,15 @@ public class Controller {
         return testService.getLocationByName(name);
     }
 
+    @GetMapping("api/location")
+    public List<Location> getLocationListInDB() throws IOException {
+        return testService.getLocationListInDB();
+    }
+
     @GetMapping("api/util/{id}")
     public String getUtilById(@PathVariable("id") String id) throws IOException {
         return testService.getUtilById(id);
     }
-
     /*
      * @GetMapping("api/initdb")
      * public String initDB() throws IOException, JSONException {
@@ -51,11 +55,6 @@ public class Controller {
     @GetMapping("/test")
     public String test() {
         return "Test Api";
-    }
-
-    @GetMapping("api/test")
-    public List<Location> getLocationListInDB() throws IOException {
-        return testService.getLocationListInDB();
     }
 
     @GetMapping("api/test/{id}")

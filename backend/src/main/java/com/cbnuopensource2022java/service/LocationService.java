@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.cbnuopensource2022java.api.ApiExplorer;
 import com.cbnuopensource2022java.entity.Location;
 import com.cbnuopensource2022java.repository.LocationRepository;
+import com.mysql.cj.xdevapi.JsonArray;
 
 import lombok.AllArgsConstructor;
 
@@ -43,5 +44,4 @@ public class LocationService {
     public Optional<Location> getLocationByIdInDB(int id) {
         return locationRepository.findById(id);
     }
-
 }
