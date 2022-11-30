@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 상단 툴바 레아이웃-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+
+        <!-- 상단 바 텍스트 -->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="검 색  결 과"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+
+    </androidx.appcompat.widget.Toolbar>
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.05dp"
+        android:layout_centerInParent="true"
+        android:background="#BBBBBB"/>
+
+    <!--    &lt;!&ndash; 검색 창 &ndash;&gt;-->
+    <!--    <android.widget.SearchView-->
+    <!--        android:id="@+id/search_view"-->
+    <!--        android:layout_width="261dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_margin="20dp"-->
+    <!--        android:iconifiedByDefault="false"-->
+    <!--        android:queryHint="검색어를 입력해주세요" />-->
+
+
+    <!-- 목록 -->
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class location_activity extends AppCompatActivity {
 
+public class location_activity extends AppCompatActivity {
 
     private ImageView backbutton;
 
@@ -22,17 +22,11 @@ public class location_activity extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent =  new Intent(location_activity.this, home_activity.class); //위치지정
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent); //액티비티 이동
             }
         });
-
-
-
-
-
     }
 }

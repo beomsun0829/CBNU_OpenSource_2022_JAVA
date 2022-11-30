@@ -34,7 +34,6 @@ public class tts_activity extends AppCompatActivity {
     private Button button1,button2,button3;
     private String text1;
     private Button sttplay;
-
     private Button jump1;
 
     //음성인식용
@@ -43,7 +42,6 @@ public class tts_activity extends AppCompatActivity {
     Button sttBtn;
     TextView textView;
     final int PERMISSION = 1;
-
 
 
 

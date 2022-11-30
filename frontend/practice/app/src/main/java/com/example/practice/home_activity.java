@@ -20,11 +20,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class home_activity extends AppCompatActivity {
 
     private ListView listview;
     private com.example.practice.ListViewAdapter adapter;
+
     private TextView adress;// 왼쪽위 주소버튼
     private ImageView setting; //오른쪽 위 세팅버튼
     private ImageView mypage; //중앙 아래 마이페이지버튼
@@ -32,6 +32,7 @@ public class home_activity extends AppCompatActivity {
     private ImageView search; //오른쪽 아래 검색버튼
     private SwipeRefreshLayout swipeRefreshLayout;
     public static int login_active = 0;
+
 
     Call<List<data_model>> call;
     String name = "";
@@ -48,7 +49,6 @@ public class home_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         // Adapter 생성
         adapter = new com.example.practice.ListViewAdapter();
 
@@ -57,8 +57,7 @@ public class home_activity extends AppCompatActivity {
         listview.setAdapter(adapter);
         //listview.setOnItemClickListener(listener);
 
-
-        call = retrofit_client.getApiService().test_api_get("충북대학교"); // interface get함수 가져오기
+        call = retrofit_client.getApiService().test_api_get("서울"); // interface get함수 가져오기
         call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
             @Override
@@ -88,18 +87,13 @@ public class home_activity extends AppCompatActivity {
                     i++;
                 }
                 adapter.notifyDataSetChanged();
-
             }
-
             //listview.setOnItemClickListener(listener);
-
             @Override
             public void onFailure(Call<List<data_model>> call, Throwable t) {
 //                textViewResult.setText(t.getMessage());
             }
-
         });
-
 
 //        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");  //(제목 부분, 이미지, 내용)
 //        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
@@ -110,6 +104,7 @@ public class home_activity extends AppCompatActivity {
 //        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
 //        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
 //        adapter.notifyDataSetChanged(); //어댑터의 변경을 알림.
+
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -176,7 +171,6 @@ public class home_activity extends AppCompatActivity {
                     Intent intent = new Intent(home_activity.this, mypage_activity.class); //위치지정
                     startActivity(intent); //액티비티 이동
                 }
-
             }
         });
         swipeRefreshLayout = findViewById(R.id.swipe_layout);

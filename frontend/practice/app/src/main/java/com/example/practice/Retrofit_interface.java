@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 public interface Retrofit_interface {
 
-    @GET("api/location")
+    @GET("api/locationsearch")
         //api/location
     Call<List<data_model>> test_api_get(@Query("name") String faclNm);
     //@Query("name") String faclNm

@@ -47,6 +47,8 @@ public class info_activity extends AppCompatActivity {
     private String dlng;
     private String dname;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
