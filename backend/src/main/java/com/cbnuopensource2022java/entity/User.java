@@ -1,6 +1,5 @@
 package com.cbnuopensource2022java.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
