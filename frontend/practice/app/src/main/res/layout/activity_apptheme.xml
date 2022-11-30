@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".apptheme_activity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+        <!-- 뒤로 가기 버튼 -->
+        <ImageView
+            android:id="@+id/backbutton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            android:layout_gravity="left"
+            />
+        <!-- 상단 텍스트 -->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="앱 테마"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.05dp"
+        android:layout_centerInParent="true"
+        android:background="#BBBBBB"/>
+    <Button
+        android:id="@+id/mod_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="DialogClick"
+        android:layout_gravity="center"
+        android:text="버 튼"
+
+        />
+
+</LinearLayout>
