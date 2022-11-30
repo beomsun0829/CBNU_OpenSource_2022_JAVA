@@ -34,7 +34,9 @@ public class search_activity extends AppCompatActivity {
 
         EditText editText = (EditText)findViewById(R.id.edit_text);
 
-
+        Intent intent = getIntent();
+        String cur_lng = intent.getStringExtra("str_lat"); //스트링을 받음 경도
+        String cur_lat = intent.getStringExtra("str_lng"); //스트링을 받음 위도
 
         //검색 버튼 누르기
         search = (ImageView) findViewById(R.id.search);
@@ -44,9 +46,15 @@ public class search_activity extends AppCompatActivity {
                 Intent intent = new Intent(search_activity.this, search_result.class); //위치지정
                 String search_text = editText.getText().toString() ;
                 intent.putExtra("text",search_text); //str1 쏴주기 반대편으로
+                intent.putExtra("str_lng",cur_lng); //경도 쏴주기 반대편으로
+                intent.putExtra("str_lat",cur_lat); //위도 쏴주기 반대편으로
+
+
                 startActivity(intent); //액티비티 이동
             }
         });
+
+
 
 
 

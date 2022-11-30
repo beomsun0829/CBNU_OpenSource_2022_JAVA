@@ -99,8 +99,8 @@ public class home_activity extends AppCompatActivity {
                     gpsLocationListener);
         }
 
-        Log.e("lat", cur_lat);
-        Log.e("lng", cur_lng);
+//        Log.e("lat", cur_lat);
+//        Log.e("lng", cur_lng);
 
 
 
@@ -164,6 +164,9 @@ public class home_activity extends AppCompatActivity {
                 startActivity(intent); //액티비티 이동
             }
         });
+
+
+
         // 주소 버튼 누르기
         adress = (TextView) findViewById(R.id.adress);
         adress.setOnClickListener(new View.OnClickListener() {
@@ -200,9 +203,12 @@ public class home_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(home_activity.this, search_activity.class); //위치지정
+                intent.putExtra("str_lng",cur_lng); //경도 쏴주기 반대편으로
+                intent.putExtra("str_lat",cur_lat); //위도 쏴주기 반대편으로
                 startActivity(intent); //액티비티 이동
             }
         });
+
 
         // 마이 페이지 버튼 누르기
         mypage = (ImageView) findViewById(R.id.mypage);

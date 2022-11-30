@@ -54,6 +54,7 @@ public class info_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
+
         Intent intent = getIntent();
         String str_name = intent.getStringExtra("str_name"); //스트링을 받음 시설명
         text_name = findViewById(R.id.text_name);

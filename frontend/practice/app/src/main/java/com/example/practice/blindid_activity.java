@@ -1,54 +1,66 @@
 package com.example.practice;
 
-import androidx.annotation.RequiresApi;
+import static android.media.AudioTrack.ERROR;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.speech.RecognitionListener;
-import static android.media.AudioTrack.ERROR;
 import android.widget.Toast;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class tts_activity extends AppCompatActivity {
+public class blindid_activity extends AppCompatActivity {
 
-
-    EditText my_id;
-    private TextToSpeech tts;
-    private Button button1,button2,button3;
-    private String text1;
-    private Button sttplay;
-    private Button jump1;
 
     //음성인식용
-    Intent intent;
-    SpeechRecognizer mRecognizer;
-    Button sttBtn;
+    private TextToSpeech tts;
     TextView textView;
-    final int PERMISSION = 1;
+    String result = "";
 
+    SpeechRecognizer mRecognizer;
+    final int PERMISSION = 1;
+    Intent intent;
+    Button ttsBtn;
+    Button sttBtn;
+
+
+    int count=0;
+    String str="";
+    String name="";
+    String birth="";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tts);
+        setContentView(R.layout.activity_blindid);
+
+
+        //소리넣기
+        SoundPool sound= new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+        int soundId = sound.load(this,R.raw.toucheffect,1);
 
         // 퍼미션 체크
         if ( Build.VERSION.SDK_INT >= 23 ){
@@ -58,31 +70,70 @@ public class tts_activity extends AppCompatActivity {
 
         // xml의 버튼과 텍스트 뷰 연결
         textView = (TextView)findViewById(R.id.sttResult);
-        sttBtn = (Button) findViewById(R.id.sttStart);
 
+        //tts ///////////////////////////////////////////////////
+        ttsBtn = (Button) findViewById(R.id.ttsbutton);
+
+        tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status!= ERROR){
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
         // RecognizerIntent 객체 생성
         intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
-        sttBtn.setOnClickListener(v -> {
-            mRecognizer=SpeechRecognizer.createSpeechRecognizer(this);
-            mRecognizer.setRecognitionListener(listener);
-            mRecognizer.startListening(intent);
+
+        ttsBtn.setOnClickListener(v -> {
+            if (count==0){
+                tts.speak("화면중앙을 누르고 이름을 이야기해 주세요. 이름 입력이 끝났다면 화면중앙을 다시한번 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
+                //tts.speak("시장2다시 1",TextToSpeech.QUEUE_FLUSH,null);
+                count+=1;
+
+
+            }
+            else if(count==1) {
+                sound.play(soundId,1f,1f,0,0,1f);
+                mRecognizer=SpeechRecognizer.createSpeechRecognizer(this);
+                mRecognizer.setRecognitionListener(listener);
+                mRecognizer.startListening(intent);
+                count+=1;
+                str =Integer.toString(count);
+
+            }
+            else if(count==2) {
+                name=textView.getText().toString();
+                //tts.speak("시장 2다시2",TextToSpeech.QUEUE_FLUSH,null);
+                tts.speak("화면중앙을 누르고 생년월일을 이야기해 주세요. 생년월일 입력이 끝났다면 화면중앙을 계속 눌러보며 서비스를 이용해 주세요",TextToSpeech.QUEUE_FLUSH,null);
+                count+=1;
+            }
+            else if(count==3) {
+                sound.play(soundId,1f,1f,0,0,1f);
+                mRecognizer=SpeechRecognizer.createSpeechRecognizer(this);
+                mRecognizer.setRecognitionListener(listener);
+                mRecognizer.startListening(intent);
+                count+=1;
+                str =Integer.toString(count);
+
+                
+            }
+            else{
+                birth=textView.getText().toString();
+                Intent intent2 = new Intent(blindid_activity.this, blindmode_activity.class); //위치지정
+                sound.play(soundId,1f,1f,0,0,1f);
+                intent.putExtra("str_name",name); //이름 쏴주기 반대편으로
+                intent.putExtra("str_birth",birth); //생년월일 쏴주기 반대편으로
+                //intent.putExtra("str_lng",cur_lng); //경도 쏴주기 반대편으로
+                //intent.putExtra("str_lat",cur_lat); //위도 쏴주기 반대편으로
+//                Log.e("정상적인 연결 : ","name = " +name);
+//                Log.e("정상적인 연결 : ","birth = " +birth);
+                startActivity(intent2); //액티비티 이동
+            }
         });
-
-
-
-        //액티비티에서 선언한걸 동적으로 연결
-
-        my_id = (EditText)findViewById(R.id.my_id);
-        button1=findViewById(R.id.button1);
-        button2=findViewById(R.id.button2);
-        button3=findViewById(R.id.button3);
-        sttplay=findViewById(R.id.sttplay);
-        jump1= findViewById(R.id.map_jump);
-
 
         tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -93,54 +144,7 @@ public class tts_activity extends AppCompatActivity {
             }
         });
 
-
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                text1 = my_id.getText().toString();
-//                tts.setPitch((float) 1.0); //음량
-//                tts.setSpeechRate((float) 1.0); //재생속도
-                tts.speak(text1, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tts.speak("반갑습니다",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tts.speak("더기더기입니다",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
-
-        sttplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String text2 = textView.getText().toString();
-//                tts.setPitch((float) 1.0); //음량
-//                tts.setSpeechRate((float) 1.0); //재생속도
-                tts.speak(text2, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        jump1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_map = new Intent(tts_activity.this,map_activity.class);
-                startActivity(intent_map);
-            }
-        });
-
-
-    } // ONcreate
+    }
 
     private RecognitionListener listener = new RecognitionListener() {
         @Override
@@ -182,6 +186,10 @@ public class tts_activity extends AppCompatActivity {
                     break;
                 case SpeechRecognizer.ERROR_NO_MATCH:
                     message = "찾을 수 없음";
+                    count-=1;
+
+                    str =Integer.toString(count);
+                    Log.e("정상적인 연결 : ","count = " +str);
                     break;
                 case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
                     message = "RECOGNIZER가 바쁨";
@@ -217,7 +225,6 @@ public class tts_activity extends AppCompatActivity {
         @Override
         public void onEvent(int eventType, Bundle params) {}
     };
-
 
 
 

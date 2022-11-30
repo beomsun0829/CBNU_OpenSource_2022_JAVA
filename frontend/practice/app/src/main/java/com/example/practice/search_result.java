@@ -40,9 +40,11 @@ public class search_result extends AppCompatActivity {
         setContentView(R.layout.activity_search_result);
 
 
+
         Intent intent = getIntent();
         String search_text = intent.getStringExtra("text"); //스트링을 받음 시설명
-
+        String cur_lng = intent.getStringExtra("str_lat"); //스트링을 받음 경도
+        String cur_lat = intent.getStringExtra("str_lng"); //스트링을 받음 위도
 
         // Adapter 생성
         adapter = new ListViewAdapter();
@@ -50,7 +52,7 @@ public class search_result extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(adapter);
 
-        call = retrofit_client.getApiService().get_Nm(search_text); // interface get함수 가져오기
+        call = retrofit_client.getApiService().get_Nm_Lat_Lng(search_text,cur_lat,cur_lng); // interface get함수 가져오기
         call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
             @Override
