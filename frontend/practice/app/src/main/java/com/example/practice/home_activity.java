@@ -31,7 +31,7 @@ public class home_activity extends AppCompatActivity {
     private ImageView bookmark; //왼쪽 아래 북마크버튼
     private ImageView search; //오른쪽 아래 검색버튼
     private SwipeRefreshLayout swipeRefreshLayout;
-    public static int login_active = 0;
+    public static int login_active = 1;
 
 
     Call<List<data_model>> call;
@@ -48,6 +48,11 @@ public class home_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //값 받아오기
+        Intent secondIntent = getIntent();
+
+
 
         // Adapter 생성
         adapter = new com.example.practice.ListViewAdapter();
@@ -169,6 +174,11 @@ public class home_activity extends AppCompatActivity {
 
                 else if (login_active==1){
                     Intent intent = new Intent(home_activity.this, mypage_activity.class); //위치지정
+                    intent.putExtra("이름", secondIntent.getStringExtra("이름"));
+                    intent.putExtra("년도",secondIntent.getStringExtra("년도") );
+                    intent.putExtra("월",secondIntent.getStringExtra("월") );
+                    intent.putExtra("일", secondIntent.getStringExtra("일"));
+                    intent.putExtra("장애종류",secondIntent.getStringExtra("장애종류") );
                     startActivity(intent); //액티비티 이동
                 }
             }
