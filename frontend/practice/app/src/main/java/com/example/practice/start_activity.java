@@ -61,7 +61,6 @@ public class start_activity extends AppCompatActivity {
         SoundPool sound= new SoundPool(5, AudioManager.STREAM_MUSIC,0);
         int soundId = sound.load(this,R.raw.toucheffect,1);
 
-
         // 퍼미션 체크
         if ( Build.VERSION.SDK_INT >= 23 ){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET,

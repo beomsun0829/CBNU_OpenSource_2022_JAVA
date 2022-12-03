@@ -50,9 +50,10 @@ public class home_activity extends AppCompatActivity {
     String[] fadresslist=new String[1000];
     String[] Lnglist = new String[1000]; //경도
     String[] Latlist = new String[1000]; //위도
+    String[] wfcltId = new String[1000]; // 시설코드
+
     String cur_lat;
     String cur_lng;
-
 
 
     @Override
@@ -128,6 +129,7 @@ public class home_activity extends AppCompatActivity {
                     fadresslist[i]= data_model.getLcMnad();
                     Lnglist[i] = data_model.getFaclLng();
                     Latlist[i]= data_model.getFaclLat();
+                    wfcltId[i]= data_model.getWfcltId();
 //                    Log.e("정상적인 연결 : ", namelist[i]);
 //                    Log.e("정상적인 연결 : ", fadresslist[i]);
                     adapter.addItem(namelist[i], R.drawable.listimage, fadresslist[i]);
@@ -161,6 +163,8 @@ public class home_activity extends AppCompatActivity {
                 intent.putExtra("str_address",fadresslist[i]); //str2 쏴주기 반대편으로
                 intent.putExtra("str_lng",Lnglist[i]); //str3 쏴주기 반대편으로
                 intent.putExtra("str_lat",Latlist[i]); //str4 쏴주기 반대편으로
+                intent.putExtra("str_WfcltId",wfcltId[i]); //시설 코드 쏴주기 반대편으로
+
                 startActivity(intent); //액티비티 이동
             }
         });

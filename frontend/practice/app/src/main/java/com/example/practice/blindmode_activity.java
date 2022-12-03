@@ -154,7 +154,7 @@ public class blindmode_activity extends AppCompatActivity {
                 tts.speak("화면 중앙을 누르고 알고싶은 장소의 갯수를 다섯/ 같은 숫자로 이야기해 주세요. 입력이 끝나면 화면 중앙을 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
                 //tts.speak("횟수",TextToSpeech.QUEUE_FLUSH,null);
                 count+=1;
-                Log.e("str_name = ", str_name);
+
             }
             else if(count==3) {
                 sound.play(soundId,1f,1f,0,0,1f);
@@ -167,11 +167,13 @@ public class blindmode_activity extends AppCompatActivity {
                 if(str_name==""){
                     str_name="충북";
                 }
+                Log.e("str_name = ", str_name);
                 strecall=textView.getText().toString();
                 recall=Integer.parseInt(strecall);
                 if(strecall==""){
                     recall=1;
                 }
+                Log.e("strecall = ", strecall);
 
 
                 //Log.e("strecall = ", strecall);
@@ -230,9 +232,7 @@ public class blindmode_activity extends AppCompatActivity {
                 tts.speak(RESULT,TextToSpeech.QUEUE_FLUSH,null);
                 count=0;
             }
-
         });
-
 
         tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -242,7 +242,6 @@ public class blindmode_activity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private RecognitionListener listener = new RecognitionListener() {
