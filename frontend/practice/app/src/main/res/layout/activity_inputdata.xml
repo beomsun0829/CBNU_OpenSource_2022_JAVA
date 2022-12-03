@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".inputdata_activity"
+    android:background="@color/grey_200"
+    >
+    <!-- 상단 툴바 레아이웃-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+        <!-- 상단 텍스트 -->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="정보 입력"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.05dp"
+        android:layout_centerInParent="true"
+        android:background="#BBBBBB"/>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="이름"
+            android:textSize="25dp"
+            />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:selectAllOnFocus="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/memo_border"
+            android:textSize="30dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="생년 월일"
+            android:textSize="25dp"
+            />
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/memo_border"
+                android:hint="년도"
+                android:padding="10dp"
+                android:textSize="30dp"
+                android:layout_marginRight="5dp"
+                />
+
+
+            <EditText
+                android:id="@+id/month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="월"
+                android:padding="10dp"
+                android:background="@drawable/memo_border"
+                android:textSize="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+            <EditText
+                android:id="@+id/day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="일"
+                android:padding="10dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/memo_border"
+                android:textSize="30dp"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="장애 종류"
+            android:textSize="25dp"
+
+            />
+        <EditText
+            android:id="@+id/disable_kinds"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/memo_border"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:textSize="40dp"
+            />
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="다음"
+            android:textSize="27dp"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

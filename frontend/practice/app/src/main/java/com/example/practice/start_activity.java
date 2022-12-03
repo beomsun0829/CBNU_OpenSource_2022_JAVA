@@ -4,6 +4,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -14,6 +17,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,23 +30,24 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class tts_activity extends AppCompatActivity {
+public class start_activity extends AppCompatActivity {
+    private Button go;
 
-
-    EditText my_id;
-    private TextToSpeech tts;
-    private Button button1,button2,button3;
-    private String text1;
-    private Button sttplay;
-
-    private Button jump1;
 
     //음성인식용
-    Intent intent;
-    SpeechRecognizer mRecognizer;
-    Button sttBtn;
+    private TextToSpeech tts;
     TextView textView;
+    String result = "";
+
+    SpeechRecognizer mRecognizer;
     final int PERMISSION = 1;
+    Intent intent;
+    Button ttsBtn;
+    //Button sttBtn;
+
+    String str="";
+    int count=0;
+
 
 
 
@@ -50,7 +55,11 @@ public class tts_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tts);
+        setContentView(R.layout.activity_start);
+
+        //소리넣기
+        SoundPool sound= new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+        int soundId = sound.load(this,R.raw.toucheffect,1);
 
         // 퍼미션 체크
         if ( Build.VERSION.SDK_INT >= 23 ){
@@ -60,30 +69,39 @@ public class tts_activity extends AppCompatActivity {
 
         // xml의 버튼과 텍스트 뷰 연결
         textView = (TextView)findViewById(R.id.sttResult);
-        sttBtn = (Button) findViewById(R.id.sttStart);
+//        sttBtn = (Button) findViewById(R.id.sttbutton);
+
+
+        //tts ///////////////////////////////////////////////////
+        ttsBtn = (Button) findViewById(R.id.ttsbutton);
+
+        tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status!= ERROR){
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
 
         // RecognizerIntent 객체 생성
         intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
-        sttBtn.setOnClickListener(v -> {
-            mRecognizer=SpeechRecognizer.createSpeechRecognizer(this);
-            mRecognizer.setRecognitionListener(listener);
-            mRecognizer.startListening(intent);
+        ttsBtn.setOnClickListener(v -> {
+                    if (count==0){
+                        tts.speak("시각장애인 이신가요? 그렇다면 화면 중앙을 천천히 두번 터치하고 설명을 들어 주세요",TextToSpeech.QUEUE_FLUSH,null);
+                        //tts.speak("시장1",TextToSpeech.QUEUE_FLUSH,null);
+                        count+=1;
+                    }
+                    else{
+                        Intent intent2 = new Intent(start_activity.this, blindid_activity.class); //위치지정
+                        sound.play(soundId,1f,1f,0,0,1f);
+                        startActivity(intent2); //액티비티 이동
+                    }
+
         });
-
-
-
-        //액티비티에서 선언한걸 동적으로 연결
-
-        my_id = (EditText)findViewById(R.id.my_id);
-        button1=findViewById(R.id.button1);
-        button2=findViewById(R.id.button2);
-        button3=findViewById(R.id.button3);
-        sttplay=findViewById(R.id.sttplay);
-        jump1= findViewById(R.id.map_jump);
 
 
         tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -96,53 +114,17 @@ public class tts_activity extends AppCompatActivity {
         });
 
 
-
-        button1.setOnClickListener(new View.OnClickListener() {
+        //시각장애인 아닐때 스킵 //////////////////////////////////////////
+        go = (Button) findViewById(R.id.go);
+        go.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                text1 = my_id.getText().toString();
-//                tts.setPitch((float) 1.0); //음량
-//                tts.setSpeechRate((float) 1.0); //재생속도
-                tts.speak(text1, TextToSpeech.QUEUE_FLUSH, null);
+            public void onClick(View v) {
+                Intent intent = new Intent(start_activity.this, inputdata_activity.class); //위치지정
+                startActivity(intent); //액티비티 이동
             }
         });
+    }
 
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tts.speak("반갑습니다",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tts.speak("더기더기입니다",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
-
-        sttplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String text2 = textView.getText().toString();
-//                tts.setPitch((float) 1.0); //음량
-//                tts.setSpeechRate((float) 1.0); //재생속도
-                tts.speak(text2, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        jump1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_map = new Intent(tts_activity.this,map_activity.class);
-                startActivity(intent_map);
-            }
-        });
-
-
-    } // ONcreate
 
     private RecognitionListener listener = new RecognitionListener() {
         @Override
@@ -219,8 +201,4 @@ public class tts_activity extends AppCompatActivity {
         @Override
         public void onEvent(int eventType, Bundle params) {}
     };
-
-
-
-
 }

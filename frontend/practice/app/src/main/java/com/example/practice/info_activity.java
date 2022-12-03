@@ -47,10 +47,13 @@ public class info_activity extends AppCompatActivity {
     private String dlng;
     private String dname;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
 
         Intent intent = getIntent();
         String str_name = intent.getStringExtra("str_name"); //스트링을 받음 시설명
@@ -64,6 +67,7 @@ public class info_activity extends AppCompatActivity {
         String str_lat = intent.getStringExtra("str_lat"); //스트링을 받음 경도
         String str_lng = intent.getStringExtra("str_lng"); //스트링을 받음 위도
 
+        String str_WfcltId = intent.getStringExtra("str_WfcltId"); //스트링을 받음 위도
 
         map_button= findViewById(R.id.map_button);
         map_button.setOnClickListener(new View.OnClickListener() {

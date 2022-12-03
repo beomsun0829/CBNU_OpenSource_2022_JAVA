@@ -12,14 +12,6 @@
 
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
-        <!-- 뒤로가기 버튼 -->
-        <ImageView
-            android:id="@+id/backbutton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
-            android:layout_gravity="left"
-            />
         <!-- 상단 바 이름 텍스트 -->
         <TextView
             android:layout_height="wrap_content"

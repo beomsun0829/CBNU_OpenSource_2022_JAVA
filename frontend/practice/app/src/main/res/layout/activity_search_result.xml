@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".apptheme_activity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 상단 툴바 레아이웃-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -14,14 +12,16 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
-        <!-- 상단 텍스트 -->
+
+        <!-- 상단 바 텍스트 -->
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="앱 테마"
+            android:text="검 색  결 과"
             android:textSize="30dp"
             android:layout_gravity="center"
             />
+
 
     </androidx.appcompat.widget.Toolbar>
     <!--구분선-->
@@ -30,14 +30,24 @@
         android:layout_height="0.05dp"
         android:layout_centerInParent="true"
         android:background="#BBBBBB"/>
-    <Button
-        android:id="@+id/mod_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="DialogClick"
-        android:layout_gravity="center"
-        android:text="버 튼"
 
-        />
+    <!--    &lt;!&ndash; 검색 창 &ndash;&gt;-->
+    <!--    <android.widget.SearchView-->
+    <!--        android:id="@+id/search_view"-->
+    <!--        android:layout_width="261dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_margin="20dp"-->
+    <!--        android:iconifiedByDefault="false"-->
+    <!--        android:queryHint="검색어를 입력해주세요" />-->
+
+
+    <!-- 목록 -->
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
 
 </LinearLayout>
