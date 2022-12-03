@@ -25,21 +25,12 @@ public class pontsize_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pontsize);
 
-        backbutton = (ImageView) findViewById(R.id.backbutton);
+
         normal_size = (Button) findViewById(R.id.normal_size);
         big_size = (Button) findViewById(R.id.big_size);
         test= (TextView) findViewById(R.id.test);
 
-        backbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent =  new Intent(pontsize_activity.this, setting_activity.class); //위치지정
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent); //액티비티 이동
-            }
-        });
 
         //TextView abc =  ((list_Fragment) getSupportFragmentManager().findFragmentByTag("list_Fragment")).title;
         //list_Fragment tf = (list_Fragment) getSupportFragmentManager().findFragmentById(R.id.title);

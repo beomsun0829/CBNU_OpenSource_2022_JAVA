@@ -51,8 +51,8 @@ public class setting_activity extends AppCompatActivity {
                 email.setType("plain/text");
                 String[] address = {"email@address.com"};
                 email.putExtra(Intent.EXTRA_EMAIL, address);
-                email.putExtra(Intent.EXTRA_SUBJECT, "test");
-                email.putExtra(Intent.EXTRA_TEXT, "내용 미리보기 (미리적을 수 있음)");
+                //email.putExtra(Intent.EXTRA_SUBJECT, "test");
+                email.putExtra(Intent.EXTRA_TEXT, "피드백 하고싶은 내용을 적어주세요.");
                 startActivity(email);
             }
         });
