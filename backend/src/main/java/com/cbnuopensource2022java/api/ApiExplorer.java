@@ -91,7 +91,9 @@ public class ApiExplorer {
         StringBuilder U = new StringBuilder(MainURL_UtilList);
         U.append("?" + "serviceKey=" + ServiceKey);
         U.append("&" + "wfcltId=" + id); // 관리시설 id
-        return Explorer(null, U).toString();
+        JSONObject JSONobj = Explorer(null, U);
+        JSONobj = rmUselessUtilData(JSONobj);
+        return JSONobj.toString();
     }
 
     public static String initDB(LocationRepository locationRepository) throws JSONException, IOException {
@@ -129,7 +131,13 @@ public class ApiExplorer {
     }
 
     public static JSONArray rmUselessLocationData(JSONObject JSONobj) {
+        System.out.println(JSONobj.toString());
         return JSONobj.getJSONObject("facInfoList").getJSONArray("servList");
+    }
+
+    public static JSONObject rmUselessUtilData(JSONObject JSONobj) {
+        System.out.println(JSONobj.toString());
+        return JSONobj.getJSONObject("facInfoList").getJSONObject("servList");
     }
 
     public static String xmlToJson(String xml) throws JSONException {
