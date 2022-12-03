@@ -18,9 +18,6 @@ import retrofit2.Response;
 
 public class search_result extends AppCompatActivity {
 
-
-
-
     private ListView listview;
     private com.example.practice.ListViewAdapter adapter;
     Call<List<data_model>> call;
@@ -31,7 +28,8 @@ public class search_result extends AppCompatActivity {
     String[] Lnglist = new String[1000]; //경도
     String[] Latlist = new String[1000]; //위도
     String[] wfcltId = new String[1000]; // 시설코드
-
+    String stri;
+    String[] searchnum=  new String[1000];
 
 
     @Override
@@ -66,6 +64,20 @@ public class search_result extends AppCompatActivity {
                 List<data_model> result = response.body() ;
 //                Log.e("정상적인 연결 : ", result.toString());
 
+
+                for (int i=0; i<1000;i++){
+                    if(i %10==0){searchnum[i]="0507-1337-2701";}
+                    else if(i %10==1) {searchnum[i]="043-230-6700";}
+                    else if(i %10==2) {searchnum[i]="043-264-1616";}
+                    else if(i %10==3) {searchnum[i]="043-267-5835";}
+                    else if(i %10==4) {searchnum[i]="043-223-9428";}
+                    else if(i %10==5) {searchnum[i]="043-716-2163";}
+                    else if(i %10==6) {searchnum[i]="043-275-8025";}
+                    else if(i %10==7) {searchnum[i]="043-216-1313";}
+                    else if(i %10==8) {searchnum[i]="043-716-2163";}
+                    else if(i %10==9) {searchnum[i]="043-236-8302";}
+                }
+
                 String content = "";
                 int i =0;
                 for (data_model data_model : result) {
@@ -79,7 +91,35 @@ public class search_result extends AppCompatActivity {
                     wfcltId[i]= data_model.getWfcltId();
 //                    Log.e("정상적인 연결 : ", namelist[i]);
 //                    Log.e("정상적인 연결 : ", fadresslist[i]);
-                    adapter.addItem(namelist[i], R.drawable.listimage, fadresslist[i]);
+                    if(i %10==0){
+                        adapter.addItem(namelist[i], R.drawable.p1, fadresslist[i]);
+                    }else if(i %10==1) {
+                        adapter.addItem(namelist[i], R.drawable.p2, fadresslist[i]);
+                    }
+                    else if(i %10==2) {
+                        adapter.addItem(namelist[i], R.drawable.p3, fadresslist[i]);
+                    }
+                    else if(i %10==3) {
+                        adapter.addItem(namelist[i], R.drawable.p4, fadresslist[i]);
+                    }
+                    else if(i %10==4) {
+                        adapter.addItem(namelist[i], R.drawable.p5, fadresslist[i]);
+                    }
+                    else if(i %10==5) {
+                        adapter.addItem(namelist[i], R.drawable.p6, fadresslist[i]);
+                    }
+                    else if(i %10==6) {
+                        adapter.addItem(namelist[i], R.drawable.p7, fadresslist[i]);
+                    }
+                    else if(i %10==7) {
+                        adapter.addItem(namelist[i], R.drawable.p8, fadresslist[i]);
+                    }
+                    else if(i %10==8) {
+                        adapter.addItem(namelist[i], R.drawable.p9, fadresslist[i]);
+                    }
+                    else if(i %10==9) {
+                        adapter.addItem(namelist[i], R.drawable.p10, fadresslist[i]);
+                    }
                     i++;
                 }
                 adapter.notifyDataSetChanged();
@@ -91,6 +131,7 @@ public class search_result extends AppCompatActivity {
             }
         });
 
+
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -100,12 +141,13 @@ public class search_result extends AppCompatActivity {
                 intent.putExtra("str_lng",Lnglist[i]); //str3 쏴주기 반대편으로
                 intent.putExtra("str_lat",Latlist[i]); //str4 쏴주기 반대편으로
                 intent.putExtra("str_WfcltId",wfcltId[i]); //시설 코드 쏴주기 반대편으로
+                stri= Integer.toString(i);
+                intent.putExtra("num",stri ); // 사진 순서
+                intent.putExtra("aorp","1"); //aorp
+                intent.putExtra("bk","0" );
+                intent.putExtra("phone",searchnum[i] );
                 startActivity(intent); //액티비티 이동
             }
         });
-
-
-
-
     }
 }

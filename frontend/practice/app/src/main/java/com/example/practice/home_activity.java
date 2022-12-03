@@ -1,5 +1,6 @@
 package com.example.practice;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -34,6 +35,9 @@ public class home_activity extends AppCompatActivity {
     private ListView listview;
     private com.example.practice.ListViewAdapter adapter;
 
+    int bookcheck=0;
+    String strbookcheck;
+
     private TextView adress;// 왼쪽위 주소버튼
     private ImageView setting; //오른쪽 위 세팅버튼
     private ImageView mypage; //중앙 아래 마이페이지버튼
@@ -42,18 +46,26 @@ public class home_activity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     public static int login_active = 1;
 
-
     Call<List<data_model>> call;
     String name = "";
     String fadress = "";
-    String[] namelist=new String[1000];
-    String[] fadresslist=new String[1000];
+    String[] namelist = new String[1000];
+    String[] fadresslist = new String[1000];
     String[] Lnglist = new String[1000]; //경도
     String[] Latlist = new String[1000]; //위도
     String[] wfcltId = new String[1000]; // 시설코드
 
+    String[] bookmarkname = new String[1000];
+    String[] bookmarkadress = new String[1000];
+    String[] bookmarkLng = new String[1000];
+    String[] bookmarkLat = new String[1000];
+    String[] presentnum= new String[1000];
+    int i=0;
+    String stri;
+
     String cur_lat;
     String cur_lng;
+    public static final int REQUEST_CODE = 100;
 
 
     @Override
@@ -63,8 +75,6 @@ public class home_activity extends AppCompatActivity {
 
         //값 받아오기
         Intent secondIntent = getIntent();
-
-
 
         // Adapter 생성
         adapter = new com.example.practice.ListViewAdapter();
@@ -79,12 +89,11 @@ public class home_activity extends AppCompatActivity {
         LocationManager locationManager = (LocationManager)
                 getSystemService(Context.LOCATION_SERVICE);
 
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions( home_activity.this, new String[] {
-                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0 );
-        }
-        else {
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(home_activity.this, new String[]{
+                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        } else {
             Location loc_Current = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (loc_Current != null) {
                 cur_lat = (String.valueOf(loc_Current.getLatitude()));
@@ -100,12 +109,21 @@ public class home_activity extends AppCompatActivity {
                     gpsLocationListener);
         }
 
-//        Log.e("lat", cur_lat);
-//        Log.e("lng", cur_lng);
+        for (int i=0; i<1000;i++){
+            if(i %10==0){presentnum[i]="0507-1337-2701";}
+            else if(i %10==1) {presentnum[i]="043-230-6700";}
+            else if(i %10==2) {presentnum[i]="043-295-2505";}
+            else if(i %10==3) {presentnum[i]="043-264-1616";}
+            else if(i %10==4) {presentnum[i]="043-267-5835";}
+            else if(i %10==5) {presentnum[i]="043-201-0001";}
+            else if(i %10==6) {presentnum[i]="043-236-0358";}
+            else if(i %10==7) {presentnum[i]="043-223-9428";}
+            else if(i %10==8) {presentnum[i]="043-716-2163";}
+            else if(i %10==9) {presentnum[i]="043-275-7411";}
+        }
 
 
-
-        call = retrofit_client.getApiService().get_Lat_Lng(cur_lat, cur_lng); // interface get함수 가져오기
+        call = retrofit_client.getApiService().get_Lat_Lng(cur_lat,cur_lng); // interface get함수 가져오기
         call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
             @Override
@@ -129,10 +147,44 @@ public class home_activity extends AppCompatActivity {
                     fadresslist[i]= data_model.getLcMnad();
                     Lnglist[i] = data_model.getFaclLng();
                     Latlist[i]= data_model.getFaclLat();
-                    wfcltId[i]= data_model.getWfcltId();
+
+
+                    if(i %10==0){
+                        adapter.addItem(namelist[i], R.drawable.a1, fadresslist[i]);
+                    }else if(i %10==1) {
+                        adapter.addItem(namelist[i], R.drawable.a2, fadresslist[i]);
+                    }
+                    else if(i %10==2) {
+                        adapter.addItem(namelist[i], R.drawable.a3, fadresslist[i]);
+                    }
+                    else if(i %10==3) {
+                        adapter.addItem(namelist[i], R.drawable.a4, fadresslist[i]);
+                    }
+                    else if(i %10==4) {
+                        adapter.addItem(namelist[i], R.drawable.a5, fadresslist[i]);
+                    }
+                    else if(i %10==5) {
+                        adapter.addItem(namelist[i], R.drawable.a6, fadresslist[i]);
+                    }
+                    else if(i %10==6) {
+                        adapter.addItem(namelist[i], R.drawable.a7, fadresslist[i]);
+                    }
+                    else if(i %10==7) {
+                        adapter.addItem(namelist[i], R.drawable.a8, fadresslist[i]);
+                    }
+                    else if(i %10==8) {
+                        adapter.addItem(namelist[i], R.drawable.a9, fadresslist[i]);
+                    }
+                    else if(i %10==9) {
+                        adapter.addItem(namelist[i], R.drawable.a10, fadresslist[i]);
+                    }
+
+
+
 //                    Log.e("정상적인 연결 : ", namelist[i]);
 //                    Log.e("정상적인 연결 : ", fadresslist[i]);
-                    adapter.addItem(namelist[i], R.drawable.listimage, fadresslist[i]);
+                    //adapter.addItem(namelist[i], R.drawable.listimage, fadresslist[i]);
+
                     i++;
                 }
                 adapter.notifyDataSetChanged();
@@ -143,6 +195,8 @@ public class home_activity extends AppCompatActivity {
 //                textViewResult.setText(t.getMessage());
             }
         });
+
+
 
 //        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");  //(제목 부분, 이미지, 내용)
 //        adapter.addItem("청주 장애인 복지관", R.drawable.listimage, "충청북도 청주시 개신동 543-2");
@@ -159,16 +213,21 @@ public class home_activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(home_activity.this, info_activity.class); //위치지정
-                intent.putExtra("str_name",namelist[i]); //str1 쏴주기 반대편으로
-                intent.putExtra("str_address",fadresslist[i]); //str2 쏴주기 반대편으로
-                intent.putExtra("str_lng",Lnglist[i]); //str3 쏴주기 반대편으로
-                intent.putExtra("str_lat",Latlist[i]); //str4 쏴주기 반대편으로
-                intent.putExtra("str_WfcltId",wfcltId[i]); //시설 코드 쏴주기 반대편으로
+                intent.putExtra("str_name", namelist[i]); //str1 쏴주기 반대편으로
+                intent.putExtra("str_address", fadresslist[i]); //str2 쏴주기 반대편으로
+                intent.putExtra("str_lng", Lnglist[i]); //str3 쏴주기 반대편으로
+                intent.putExtra("str_lat", Latlist[i]); //str4 쏴주기 반대편으로
+                intent.putExtra("str_WfcltId", wfcltId[i]); //시설 코드 쏴주기 반대편으로
+                stri= Integer.toString(i);
+                intent.putExtra("num",stri ); // 사진 순서
+                intent.putExtra("aorp","0" );
+                intent.putExtra("bk","0" );
+                intent.putExtra("phone",presentnum[i] );
 
-                startActivity(intent); //액티비티 이동
+
+                startActivityForResult(intent, REQUEST_CODE); //액티비티 이동
             }
         });
-
 
 
         // 주소 버튼 누르기
@@ -197,6 +256,15 @@ public class home_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(home_activity.this, bookmark_activity.class); //위치지정
+
+
+                intent.putExtra("str_name", bookmarkname); //str1 쏴주기 반대편으로
+                intent.putExtra("str_address", bookmarkadress); //str2 쏴주기 반대편으로
+                strbookcheck= Integer.toString(bookcheck);
+                intent.putExtra("check", strbookcheck);
+                intent.putExtra("lng", bookmarkLng);
+                intent.putExtra("lat", bookmarkLat);
+
                 startActivity(intent); //액티비티 이동
             }
         });
@@ -207,8 +275,10 @@ public class home_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(home_activity.this, search_activity.class); //위치지정
-                intent.putExtra("str_lng",cur_lng); //경도 쏴주기 반대편으로
-                intent.putExtra("str_lat",cur_lat); //위도 쏴주기 반대편으로
+                intent.putExtra("str_lng", cur_lng); //경도 쏴주기 반대편으로
+                intent.putExtra("str_lat", cur_lat); //위도 쏴주기 반대편으로
+
+
                 startActivity(intent); //액티비티 이동
             }
         });
@@ -222,15 +292,13 @@ public class home_activity extends AppCompatActivity {
                 if (login_active == 0) {
                     Intent intent = new Intent(home_activity.this, LoginActivity.class); //위치지정
                     startActivity(intent); //액티비티 이동
-                }
-
-                else if (login_active==1){
+                } else if (login_active == 1) {
                     Intent intent = new Intent(home_activity.this, mypage_activity.class); //위치지정
                     intent.putExtra("이름", secondIntent.getStringExtra("이름"));
-                    intent.putExtra("년도",secondIntent.getStringExtra("년도") );
-                    intent.putExtra("월",secondIntent.getStringExtra("월") );
+                    intent.putExtra("년도", secondIntent.getStringExtra("년도"));
+                    intent.putExtra("월", secondIntent.getStringExtra("월"));
                     intent.putExtra("일", secondIntent.getStringExtra("일"));
-                    intent.putExtra("장애종류",secondIntent.getStringExtra("장애종류") );
+                    intent.putExtra("장애종류", secondIntent.getStringExtra("장애종류"));
                     startActivity(intent); //액티비티 이동
                 }
             }
@@ -258,13 +326,42 @@ public class home_activity extends AppCompatActivity {
             Log.e("lat", cur_lat);
             Log.e("lng", cur_lng);
         }
+
         public void onStatusChanged(String provider, int status, Bundle extras) {
 
-        } public void onProviderEnabled(String provider) {
+        }
 
-        } public void onProviderDisabled(String provider) {
+        public void onProviderEnabled(String provider) {
 
         }
+
+        public void onProviderDisabled(String provider) {
+
+        }
+
     };
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode,data);
+        if (requestCode  == REQUEST_CODE) {
+            if (resultCode != Activity.RESULT_OK) {
+                return;
+            }
+            else{
+                bookmarkname[i] = data.getExtras().getString("str1");
+                bookmarkadress[i] =data.getExtras().getString("str2");
+                bookmarkLng [i]= data.getExtras().getString("str3");
+                bookmarkLat [i]= data.getExtras().getString("str4");
+
+                bookcheck+=1;
+//            Log.e("이름데이터 도착 = ", bookmarkname[i]);
+//            Log.e("주소데이터 도착 = ", bookmarkadress[i]);
+                i++;
+
+            }
+
+        }
+    }
 }
+

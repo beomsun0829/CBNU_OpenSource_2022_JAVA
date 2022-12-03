@@ -48,6 +48,7 @@
         android:background="#666666"/>
     <!-- 지도에서 위치 찾기 레이아웃 -->
     <LinearLayout
+        android:id="@+id/map_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
