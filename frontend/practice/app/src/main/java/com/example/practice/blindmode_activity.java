@@ -48,6 +48,8 @@ public class blindmode_activity extends AppCompatActivity {
     LinearLayout ttsBtn;
     Button sttBtn;
 
+    TextView ttsbutton_text;
+
     int count=0;
 
     private ListView listview;
@@ -99,6 +101,7 @@ public class blindmode_activity extends AppCompatActivity {
                     gpsLocationListener);
         }
 
+        ttsbutton_text= (TextView) findViewById(R.id.ttsbutton_text);
 
         // Adapter 생성
         adapter = new ListViewAdapter();
@@ -139,8 +142,12 @@ public class blindmode_activity extends AppCompatActivity {
 
         ttsBtn.setOnClickListener(v -> {
             if (count==0){
-                tts.speak("화면 중앙을 누르고 검색하고 싶은 지역을 이야기해주세요.입력이 끝나면 화면 중앙을 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
+                    tts.speak("화면중앙을 누르고 검색하고 싶은 키워드를 이야기해주세요.입력이 끝나면 화면중앙을 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
                 //tts.speak("지역",TextToSpeech.QUEUE_FLUSH,null);
+
+                ttsbutton_text.setText("화면중앙을 누르고"+"\n"+"검색하고 싶은 키워드를"+"\n"+"이야기해주세요."+"\n\n"+"입력이 끝나면"+"\n"+"화면중앙을 눌러주세요.");
+                ttsbutton_text.setTextSize(40);
+
                 count+=1;
             }
             else if(count==1) {
@@ -152,7 +159,9 @@ public class blindmode_activity extends AppCompatActivity {
             }
             else if (count==2){
                 str_name=textView.getText().toString();
-                tts.speak("화면 중앙을 누르고 알고싶은 장소의 갯수를 다섯/ 같은 숫자로 이야기해 주세요. 입력이 끝나면 화면 중앙을 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
+                tts.speak("화면 중앙을 누르고 알고싶은 장소의 갯수를 다섯 같은 숫자로 말해주세요. 입력이 끝나면 화면 중앙을 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
+                ttsbutton_text.setText("화면중앙을 누르고"+"\n"+"알고싶은 장소의 갯수를"+"\n"+"숫자로 말해주세요."+"\n\n"+"입력이 끝나면"+"\n"+"화면중앙을 눌러주세요.");
+                ttsbutton_text.setTextSize(40);
                 //tts.speak("횟수",TextToSpeech.QUEUE_FLUSH,null);
                 count+=1;
 
@@ -174,7 +183,7 @@ public class blindmode_activity extends AppCompatActivity {
                 if(strecall==""){
                     recall=1;
                 }
-                Log.e("strecall = ", strecall);
+                //Log.e("strecall = ", strecall);
 
 
                 //Log.e("strecall = ", strecall);
@@ -221,6 +230,8 @@ public class blindmode_activity extends AppCompatActivity {
                     }
                 });
                 tts.speak(" 화면 중앙을 누르시면 검색하신 지역의 장애시설 정보를 현재위치에서 가까운 순서대로 불러드리겠 습니다",TextToSpeech.QUEUE_FLUSH,null);
+                ttsbutton_text.setText("화면중앙을 누르시면"+"\n"+"검색하신 지역의"+"\n"+"장애시설 정보를"+"\n"+"현재위치에서"+"\n"+"가까운 순서대로"+"\n"+"불러드리겠습니다.");
+                ttsbutton_text.setTextSize(40);
             }
             else {
                 sound.play(soundId,1f,1f,0,0,1f);
@@ -229,8 +240,11 @@ public class blindmode_activity extends AppCompatActivity {
                     RESULT+="장소이름은."+namelist[i]+".주소는"+fadresslist[i]+". 입니다.";
 
                 }
+
                 RESULT+="더 검색하고 싶으시면 화면 중앙을 눌러주세요";
                 tts.speak(RESULT,TextToSpeech.QUEUE_FLUSH,null);
+                ttsbutton_text.setText("더 검색하고 싶으시면 "+"\n"+"화면 중앙을 눌러주세요.");
+                ttsbutton_text.setTextSize(40);
                 count=0;
             }
         });

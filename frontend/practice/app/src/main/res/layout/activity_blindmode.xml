@@ -10,10 +10,11 @@
 
     <EditText
         android:id="@+id/sttResult"
-        android:layout_width="261dp"
+        android:layout_width="190dp"
         android:layout_height="44dp"
-        android:hint="입력한 정보"
+        android:layout_marginTop="0dp"
         android:fontFamily="@font/font_baemin"
+        android:hint="입력한 정보"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -21,7 +22,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"
         app:layout_constraintVertical_bias="0.337" />
     <LinearLayout
         android:id="@+id/ttsbutton"
@@ -29,15 +29,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <TextView
-            android:fontFamily="@font/font_baemin"
             android:id="@+id/ttsbutton_text"
             android:layout_width="450dp"
-            android:layout_height="550dp"
+            android:layout_height="626dp"
             android:layout_gravity="center"
+            android:fontFamily="@font/font_baemin"
             android:gravity="center"
-            android:text="TTS3"
-            android:textSize="100dp" />
+            android:text="화면 중앙을
+            눌러주세요"
+            android:textSize="80dp" />
     </LinearLayout>
 
 
@@ -46,7 +48,7 @@
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="300dp"
         android:layout_weight="1" />
 
 

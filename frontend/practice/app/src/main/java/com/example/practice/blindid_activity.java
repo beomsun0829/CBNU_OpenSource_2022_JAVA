@@ -46,6 +46,9 @@ public class blindid_activity extends AppCompatActivity {
     LinearLayout ttsBtn;
     Button sttBtn;
 
+    TextView ttsbutton_text;
+
+
 
     int count=0;
     String str="";
@@ -58,6 +61,7 @@ public class blindid_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blindid);
 
+        ttsbutton_text= (TextView) findViewById(R.id.ttsbutton_text);
 
         //소리넣기
         SoundPool sound= new SoundPool(5, AudioManager.STREAM_MUSIC,0);
@@ -88,10 +92,14 @@ public class blindid_activity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
+        ttsbutton_text= (TextView) findViewById(R.id.ttsbutton_text);
 
         ttsBtn.setOnClickListener(v -> {
             if (count==0){
-                tts.speak("화면중앙을 누르고 이름을 이야기해 주세요. 이름 입력이 끝났다면 화면중앙을 다시한번 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
+                tts.speak("화면중앙을 누르고 이름을 말해주세요. 이름 입력이 끝났다면 화면중앙을 다시한번 눌러주세요",TextToSpeech.QUEUE_FLUSH,null);
+                ttsbutton_text.setText("화면중앙을 누르고 "+"\n"+"이름을 말해주세요."+"\n\n"+"이름 입력이 끝났다면"+"\n"+"화면중앙을 다시한번"+"\n"+"눌러주세요.");
+                ttsbutton_text.setTextSize(40);
+
                 //tts.speak("시장2다시 1",TextToSpeech.QUEUE_FLUSH,null);
                 count+=1;
 
@@ -108,8 +116,12 @@ public class blindid_activity extends AppCompatActivity {
             }
             else if(count==2) {
                 name=textView.getText().toString();
+                
                 //tts.speak("시장 2다시2",TextToSpeech.QUEUE_FLUSH,null);
-                tts.speak("화면중앙을 누르고 생년월일을 이야기해 주세요. 생년월일 입력이 끝났다면 화면중앙을 계속 눌러보며 서비스를 이용해 주세요",TextToSpeech.QUEUE_FLUSH,null);
+                tts.speak("화면 중앙을 누르고 생년월일을 말해주세요. 입력이 끝났다면 화면중앙을 계속 누르며 서비스를 이용해 주세요",TextToSpeech.QUEUE_FLUSH,null);
+                ttsbutton_text.setText("화면중앙을 누르고 "+"\n"+"생년월일을 말해주세요."+"\n\n"+"입력이 끝난다면 "+"\n"+"화면중앙을 계속 누르며 "+"\n"+"서비스를 이용해 주세요.");
+                ttsbutton_text.setTextSize(40);
+
                 count+=1;
             }
             else if(count==3) {

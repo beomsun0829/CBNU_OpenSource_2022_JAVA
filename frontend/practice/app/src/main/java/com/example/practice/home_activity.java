@@ -66,6 +66,8 @@ public class home_activity extends AppCompatActivity {
     String cur_lat;
     String cur_lng;
     public static final int REQUEST_CODE = 100;
+    String str_name ;
+
 
 
     @Override
@@ -73,8 +75,11 @@ public class home_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         //값 받아오기
         Intent secondIntent = getIntent();
+
+        str_name= secondIntent.getStringExtra("이름");
 
         // Adapter 생성
         adapter = new com.example.practice.ListViewAdapter();
@@ -128,21 +133,13 @@ public class home_activity extends AppCompatActivity {
             //콜백 받는 부분
             @Override
             public void onResponse(Call<List<data_model>> call, Response<List<data_model>> response) {
-//                Log.e("error 3", "error 3");
                 if (!response.isSuccessful()) {
-//                    Log.e("비정상적인 연결 : ", "Code : " + response.code());
                     return;
                 }
-                //Log.e("URL : ", call.toString());
                 List<data_model> result = response.body() ;
-//                Log.e("정상적인 연결 : ", result.toString());
 
-                String content = "";
                 int i =0;
                 for (data_model data_model : result) {
-                    content += "NAME: " + data_model.getFaclNm() + "\n";
-                    content += "TYPE CODE: " + data_model.getFaclTyCd() + "\n";
-                    content += "ADDRESS: " + data_model.getLcMnad() + "\n\n";
                     namelist[i] = data_model.getFaclNm();
                     fadresslist[i]= data_model.getLcMnad();
                     Lnglist[i] = data_model.getFaclLng();
@@ -226,10 +223,10 @@ public class home_activity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE); //액티비티 이동
             }
         });
-
-
         // 주소 버튼 누르기
         adress = (TextView) findViewById(R.id.adress);
+        adress.setText(str_name);
+
         adress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

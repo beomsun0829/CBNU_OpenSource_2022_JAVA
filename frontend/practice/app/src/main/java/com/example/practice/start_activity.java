@@ -48,7 +48,7 @@ public class start_activity extends AppCompatActivity {
 
     String str="";
     int count=0;
-
+    TextView ttsbutton_text;
 
 
 
@@ -75,6 +75,7 @@ public class start_activity extends AppCompatActivity {
 
         //tts ///////////////////////////////////////////////////
         ttsBtn = (LinearLayout) findViewById(R.id.ttsbutton);
+        ttsbutton_text= (TextView) findViewById(R.id.ttsbutton_text);
 
         tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -91,16 +92,18 @@ public class start_activity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
         ttsBtn.setOnClickListener(v -> {
-                    if (count==0){
-                        tts.speak("시각장애인 이신가요? 그렇다면 화면 중앙을 천천히 두번 터치하고 설명을 들어 주세요",TextToSpeech.QUEUE_FLUSH,null);
-                        //tts.speak("시장1",TextToSpeech.QUEUE_FLUSH,null);
-                        count+=1;
-                    }
-                    else{
-                        Intent intent2 = new Intent(start_activity.this, blindid_activity.class); //위치지정
-                        sound.play(soundId,1f,1f,0,0,1f);
-                        startActivity(intent2); //액티비티 이동
-                    }
+                if (count==0){
+                    ttsbutton_text.setText("시각장애인이신가요?"+"\n"+"그렇다면 화면 중앙을"+"\n"+" 천천히 두번 터치하고 "+"\n"+"설명을 들어주세요.");
+                    ttsbutton_text.setTextSize(40);
+                    tts.speak("시각장애인 이신가요? 그렇다면 화면 중앙을 천천히 두번 터치하고 설명을 들어 주세요",TextToSpeech.QUEUE_FLUSH,null);
+                    //tts.speak("시장1",TextToSpeech.QUEUE_FLUSH,null);
+                    count+=1;
+                }
+                else{
+                    Intent intent2 = new Intent(start_activity.this, blindid_activity.class); //위치지정
+                    sound.play(soundId,1f,1f,0,0,1f);
+                    startActivity(intent2); //액티비티 이동
+                }
 
         });
 

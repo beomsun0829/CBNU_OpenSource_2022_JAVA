@@ -258,18 +258,17 @@ public class info_activity extends AppCompatActivity {
                     check =1-check;
                     if (check==0){
                         bookmark.setImageResource(R.drawable.ic_baseline_bookmark_border_24);
-                        String checkstring= Integer.toString(check);
-                        Log.e("check 확인",checkstring);
+//                        String checkstring= Integer.toString(check);
+//                        Log.e("check 확인",checkstring);
                     }
                     else {
                         bookmark.setImageResource(R.drawable.ic_baseline_bookmark_24);
-                        String checkstring = Integer.toString(check);
-                        Log.e("check 확인", checkstring);
+//                        String checkstring = Integer.toString(check);
+//                        Log.e("check 확인", checkstring);
                     }
                 }
             }
         });
-
     }
     public void onBackPressed(){
         //Log.e("뒤로가기 키 확인","ㅇㅇ 작동");
@@ -280,9 +279,7 @@ public class info_activity extends AppCompatActivity {
             intentR.putExtra("str2",str_address);
             intentR.putExtra("str3",str_lng);
             intentR.putExtra("str4",str_lat);
-
         }
         finish();
     }
-
 }

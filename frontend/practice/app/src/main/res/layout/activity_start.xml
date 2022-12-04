@@ -28,26 +28,28 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
+
     <TextView
-        android:fontFamily="@font/font_baemin"
         android:id="@+id/ttsbutton_text"
-        android:layout_width="450dp"
+        android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_gravity="center"
+        android:fontFamily="@font/font_baemin"
         android:gravity="center"
-        android:text="TTS1"
-        android:textSize="100dp" />
-    </LinearLayout>
+        android:text="화면 중앙을
+        눌러주세요"
+        android:textSize="80dp" />
+</LinearLayout>
 
 
     <Button
-        android:fontFamily="@font/font_baemin"
         android:id="@+id/go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="139dp"
+        android:layout_height="75dp"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_round1"
+        android:fontFamily="@font/font_baemin"
         android:text="아닙니다" />
 
         <EditText
