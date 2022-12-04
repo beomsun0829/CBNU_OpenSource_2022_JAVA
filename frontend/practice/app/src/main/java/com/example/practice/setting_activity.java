@@ -31,9 +31,7 @@ public class setting_activity extends AppCompatActivity {
         apptheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(setting_activity.this,apptheme_activity.class); //위치지정
-                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent =  new Intent(getApplicationContext(), ModDialog.class); //위치지정
                 startActivity(intent); //액티비티 이동
             }
         });
@@ -49,7 +47,7 @@ public class setting_activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.setType("plain/text");
-                String[] address = {"email@address.com"};
+                String[] address = {"Developer@google.com"};
                 email.putExtra(Intent.EXTRA_EMAIL, address);
                 //email.putExtra(Intent.EXTRA_SUBJECT, "test");
                 email.putExtra(Intent.EXTRA_TEXT, "피드백 하고싶은 내용을 적어주세요.");

@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 public class ModDialog extends Activity {
-    Button close_btn;
-    RadioButton r_btn_light, r_btn_dark;
+    TextView  close_btn;
+    TextView r_btn_light, r_btn_dark;
     String themeColor;
 
     @Override
@@ -41,7 +42,6 @@ public class ModDialog extends Activity {
                 themeColor = ThemeUtil.DARK_MODE;
                 ThemeUtil.applyTheme(themeColor);
                 ThemeUtil.modSave(getApplicationContext(),themeColor);
-
             }
         });
 

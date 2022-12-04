@@ -4,7 +4,7 @@
         android:radius="14dp"
         />
     <solid
-        android:color="#DDDDDD"
+        android:color="#aaaaaa"
         />
     <padding
         android:left="0dp"
@@ -15,7 +15,7 @@
 
     <stroke
         android:width="3dp"
-        android:color="#DDDDDD"
+        android:color="#aaaaaa"
         />
 </shape>
 <!--<ripple xmlns:android="http://schemas.android.com/apk/res/android"-->

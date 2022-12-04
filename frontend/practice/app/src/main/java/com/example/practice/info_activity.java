@@ -107,6 +107,7 @@ public class info_activity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
 
+
         if (aorp==0){
             if(piccount %10==0){
                 imageView.setImageResource(R.drawable.a1);
@@ -251,6 +252,10 @@ public class info_activity extends AppCompatActivity {
         });
 
         bookmark = (ImageView) findViewById(R.id.bookmark);
+        if( bk==1){
+            bookmark.setImageResource(R.drawable.ic_baseline_bookmark_24);
+        }
+
         bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

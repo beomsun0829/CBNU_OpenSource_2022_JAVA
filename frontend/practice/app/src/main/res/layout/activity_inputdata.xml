@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".inputdata_activity"
-    android:background="@color/grey_200"
+    android:background="@color/white"
     >
     <!-- 상단 툴바 레아이웃-->
     <androidx.appcompat.widget.Toolbar
@@ -124,23 +124,27 @@
             android:textSize="25dp"
 
             />
+
         <EditText
             android:id="@+id/disable_kinds"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@drawable/memo_border"
             android:fontFamily="@font/font_baemin"
-            android:paddingTop="40dp"
-            android:paddingBottom="40dp"
-            android:textSize="40dp"
-            />
+            android:paddingTop="25dp"
+            android:paddingBottom="10dp"
+            android:textSize="40dp" />
+
         <Button
+            android:layout_marginTop="10dp"
             android:id="@+id/next_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_baemin"
             android:text="다음"
+            android:textColor="@color/white"
+            android:background="@drawable/button_round2"
             android:textSize="27dp"
             />
 
