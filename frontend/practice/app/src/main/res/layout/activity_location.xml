@@ -16,6 +16,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/font_baemin"
             android:text="위치"
             android:textSize="30dp"
             android:textColor="#000000"
@@ -31,6 +32,7 @@
         android:background="#BBBBBB"/>
     <!-- 검색 창 -->
     <android.widget.SearchView
+        android:fontFamily="@font/font_baemin"
         android:layout_margin="20dp"
         android:id="@+id/search_view"
         android:layout_width="wrap_content"
@@ -65,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:fontFamily="@font/font_baemin"
             android:text="지도에서 위치 찾기"
             android:layout_gravity="center_vertical|center_horizontal"
             android:textColor="#000000"

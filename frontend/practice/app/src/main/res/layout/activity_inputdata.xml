@@ -20,6 +20,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/font_baemin"
             android:text="정보 입력"
             android:textSize="30dp"
             android:layout_gravity="center"
@@ -40,6 +41,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/font_baemin"
             android:layout_marginTop="20dp"
             android:text="이름"
             android:textSize="25dp"
@@ -55,6 +57,7 @@
             android:padding="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/memo_border"
+            android:fontFamily="@font/font_baemin"
             android:textSize="30dp"
             />
         <TextView
@@ -62,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:text="생년 월일"
+            android:fontFamily="@font/font_baemin"
             android:textSize="25dp"
             />
         <LinearLayout
@@ -77,6 +81,7 @@
                 android:layout_weight="3"
                 android:background="@drawable/memo_border"
                 android:hint="년도"
+                android:fontFamily="@font/font_baemin"
                 android:padding="10dp"
                 android:textSize="30dp"
                 android:layout_marginRight="5dp"
@@ -89,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:hint="월"
+                android:fontFamily="@font/font_baemin"
                 android:padding="10dp"
                 android:background="@drawable/memo_border"
                 android:textSize="30dp"
@@ -101,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:hint="일"
+                android:fontFamily="@font/font_baemin"
                 android:padding="10dp"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/memo_border"
@@ -112,6 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
+            android:fontFamily="@font/font_baemin"
             android:text="장애 종류"
             android:textSize="25dp"
 
@@ -122,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/memo_border"
+            android:fontFamily="@font/font_baemin"
             android:paddingTop="40dp"
             android:paddingBottom="40dp"
             android:textSize="40dp"
@@ -130,6 +139,7 @@
             android:id="@+id/next_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/font_baemin"
             android:text="다음"
             android:textSize="27dp"
             />

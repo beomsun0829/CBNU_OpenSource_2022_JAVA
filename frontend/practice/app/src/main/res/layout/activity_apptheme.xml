@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:text="앱 테마"
             android:textSize="30dp"
+            android:fontFamily="@font/font_baemin"
             android:layout_gravity="center"
             />
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:onClick="DialogClick"
         android:layout_gravity="center"
+        android:fontFamily="@font/font_baemin"
         android:text="버 튼"
 
         />

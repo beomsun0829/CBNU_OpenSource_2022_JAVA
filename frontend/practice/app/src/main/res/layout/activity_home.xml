@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="위치"
-            android:textSize="30dp"
+            android:fontFamily="@font/font_baemin"
+            android:textSize="35dp"
             style="@style/Hyperlink"
             />
         <!-- 설정 -->

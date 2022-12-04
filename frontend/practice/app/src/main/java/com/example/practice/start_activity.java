@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.speech.RecognitionListener;
 import static android.media.AudioTrack.ERROR;
@@ -42,7 +43,7 @@ public class start_activity extends AppCompatActivity {
     SpeechRecognizer mRecognizer;
     final int PERMISSION = 1;
     Intent intent;
-    Button ttsBtn;
+    LinearLayout ttsBtn;
     //Button sttBtn;
 
     String str="";
@@ -73,7 +74,7 @@ public class start_activity extends AppCompatActivity {
 
 
         //tts ///////////////////////////////////////////////////
-        ttsBtn = (Button) findViewById(R.id.ttsbutton);
+        ttsBtn = (LinearLayout) findViewById(R.id.ttsbutton);
 
         tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override

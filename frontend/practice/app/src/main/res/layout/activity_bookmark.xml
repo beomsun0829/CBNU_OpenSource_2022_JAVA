@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:text="즐겨 찾기"
             android:textSize="30dp"
+            android:fontFamily="@font/font_baemin"
             android:layout_gravity="center"
             />
 

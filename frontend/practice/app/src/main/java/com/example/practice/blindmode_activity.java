@@ -23,6 +23,7 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +45,7 @@ public class blindmode_activity extends AppCompatActivity {
     SpeechRecognizer mRecognizer;
     final int PERMISSION = 1;
     Intent intent;
-    Button ttsBtn;
+    LinearLayout ttsBtn;
     Button sttBtn;
 
     int count=0;
@@ -120,7 +121,7 @@ public class blindmode_activity extends AppCompatActivity {
         textView = (TextView)findViewById(R.id.sttResult);
 
         //tts ///////////////////////////////////////////////////
-        ttsBtn = (Button) findViewById(R.id.ttsbutton);
+        ttsBtn = (LinearLayout) findViewById(R.id.ttsbutton);
 
         tts= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override

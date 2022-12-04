@@ -13,7 +13,7 @@
         android:layout_width="261dp"
         android:layout_height="44dp"
         android:hint="입력한 정보"
-
+        android:fontFamily="@font/font_baemin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,17 +23,23 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="0dp"
         app:layout_constraintVertical_bias="0.337" />
-    <Button
+    <LinearLayout
         android:id="@+id/ttsbutton"
-        android:layout_width="363dp"
-        android:layout_height="552dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_round"
-        android:text="TTS2"
-        android:textSize="100dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:fontFamily="@font/font_baemin"
+            android:id="@+id/ttsbutton_text"
+            android:layout_width="450dp"
+            android:layout_height="550dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="TTS2"
+            android:textSize="100dp" />
+    </LinearLayout>
+
 
 
 

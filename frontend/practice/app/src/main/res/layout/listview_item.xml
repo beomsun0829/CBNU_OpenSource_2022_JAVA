@@ -35,9 +35,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="center"
+                android:fontFamily="@font/font_baemin"
                 android:text="시설 이름"
                 android:ellipsize="end"
-                android:textSize="30sp"
+                android:textSize="35sp"
                 />
 
         </LinearLayout>
@@ -57,11 +58,12 @@
                 <!-- 레이아웃 집합-2-1의 특성 -->
                 <!-- 주소 -->
                 <TextView
+                    android:fontFamily="@font/font_baemin"
                     android:id="@+id/text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="주소"
-                    android:textSize="20dp"
+                    android:textSize="30dp"
                     android:ellipsize="end"
                     android:gravity="left"
                     android:layout_gravity="left"

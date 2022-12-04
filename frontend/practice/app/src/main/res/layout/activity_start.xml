@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:fontFamily="@font/font_baemin"
         android:text="시각 장애인 이십니까?"
         android:textSize="30dp"
 
@@ -21,25 +22,32 @@
         android:layout_gravity="center"
         android:src="@drawable/ic_baseline_person_24" />
 
-
-    <Button
-        android:id="@+id/ttsbutton"
-        android:layout_width="363dp"
-        android:layout_height="552dp"
+<LinearLayout
+    android:id="@+id/ttsbutton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:fontFamily="@font/font_baemin"
+        android:id="@+id/ttsbutton_text"
+        android:layout_width="450dp"
+        android:layout_height="550dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_round"
+        android:gravity="center"
         android:text="TTS1"
         android:textSize="100dp" />
+    </LinearLayout>
+
 
     <Button
+        android:fontFamily="@font/font_baemin"
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_round1"
         android:text="아닙니다" />
 
         <EditText
@@ -47,6 +55,7 @@
         android:layout_width="261dp"
         android:layout_height="44dp"
         android:hint="음성인식 결과 표시"
+            android:fontFamily="@font/font_baemin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
