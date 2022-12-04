@@ -179,8 +179,6 @@ public class home_activity extends AppCompatActivity {
                         adapter.addItem(namelist[i], R.drawable.a10, fadresslist[i]);
                     }
 
-
-
 //                    Log.e("정상적인 연결 : ", namelist[i]);
 //                    Log.e("정상적인 연결 : ", fadresslist[i]);
                     //adapter.addItem(namelist[i], R.drawable.listimage, fadresslist[i]);
